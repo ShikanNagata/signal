@@ -83,9 +83,13 @@ TRADE_RULES = """あなたは私の専属トレードアシスタントです。
 例:「10日持つと平均+2.7%だが43%の確率で下落。悪い10%なら-9.3%（約$230の含み減）。しかも途中では中央値でも-11%掘るので、そこで狼狽売りしない覚悟が必要」
 平均・下落確率・悪い10%の3点セットで判断できるように書くこと。
 
-出力形式: 銘柄ごとに「本日のアクション」を1〜3行＋保有銘柄は上記の見通し1〜2行。最後に全体サマリーを2〜3行。
-保有していない銘柄（holdingがnull）に売りアクションは不要。日本語で簡潔に。
-最後に「数字は過去統計であり将来を保証しない」旨を一言添える。"""
+出力形式（重要・簡潔に）:
+- メール本文には別途、機械生成の「今日やること」「前回からの変化」「詳細数値」が載る。同じ内容の繰り返しは禁止
+- あなたの担当は「AIコメント」欄のみ: 注目すべき変化・リスク・アクションの根拠を5〜10行で
+- アクションが必要な銘柄（Lv2以上の保有株、反転シグナル2個以上）と状態が変わった銘柄に絞る
+- 金額はドルと円の両方（usdjpyを使用、自分で為替を推測しない）
+- 全銘柄が平常なら「今日は動く必要なし」と短く書いてよい
+- 最後に「数字は過去統計であり将来を保証しない」旨を一言"""
 
 
 # ===================== 1. 株価CSV更新 =====================
@@ -273,8 +277,9 @@ def build_summary(today, usdjpy=None):
     return summary
 
 
-def holdings_section(summary):
-    """Pythonで確定計算した保有状況＋売買両面の見通し（Geminiに依存しない正確な数字）"""
+def holdings_section(summary, actions=None):
+    """Pythonで確定計算した保有状況＋売買両面の見通し（Geminiに依存しない正確な数字）
+    actionsを渡すと、アクション不要の銘柄は1行に圧縮する"""
     rate = summary.get("usdjpy")
 
     def jpy(usd):
@@ -283,25 +288,46 @@ def holdings_section(summary):
         v = usd * rate
         return f"約{v/10000:+,.1f}万円" if abs(v) >= 10000 else f"約{v:+,.0f}円"
 
-    lines = ["【保有状況と売買の見通し】" + (f"USD/JPY={rate}" if rate else "（円換算レート取得失敗のためドルのみ）")]
+    def pair(usd):
+        """符号つき金額: '+317$／約+4.9万円'（レートなしなら '+317$'）"""
+        j = jpy(usd)
+        return f"{usd:+,.0f}$" + (f"／{j}" if j else "")
+
+    def val(usd):
+        """評価額: '$1,969（約30.2万円）'（レートなしなら '$1,969'）"""
+        j = jpy(usd)
+        return f"${usd:,.0f}" + (f"（{j.replace('+', '')}）" if j else "")
+
+    lines = ["◆詳細（金額と過去統計）" + (f" USD/JPY={rate}" if rate else "（円換算レート取得失敗のためドルのみ）")]
     tot_v = tot_p = 0.0
     for tk in summary["tickers"]:
         h = tk.get("holding")
+        act, show_detail, _ = (actions or {}).get(tk["ticker"], ("", True, "none")) if actions else ("", True, "none")
+        if not show_detail:
+            # アクション不要の銘柄は1行だけ
+            if h:
+                tot_v += h["value_usd"]
+                tot_p += h["pnl_usd"]
+                lines.append(f"■ {tk['ticker']}: {h['qty']}株 / {val(h['value_usd'])} / "
+                             f"取得来{h['pnl_pct']:+.1f}% — {act}")
+            else:
+                lines.append(f"■ {tk['ticker']}（未保有）${tk['price']} — {act}")
+            continue
         if h:
             v, p = h["value_usd"], h["pnl_usd"]
             tot_v += v
             tot_p += p
             dc = h.get("day_change_usd")
             day = f" / 前日比 {dc:+,}$" if dc is not None else ""
-            lines.append(f"■ {tk['ticker']}: {h['qty']}株 × ${tk['price']} = ${v:,}（{jpy(v).replace('+', '')}）")
-            lines.append(f"   取得来 {h['pnl_pct']:+.1f}%（{p:+,}$／{jpy(p)}）{day}")
+            lines.append(f"■ {tk['ticker']}: {h['qty']}株 × ${tk['price']} = {val(v)}")
+            lines.append(f"   取得来 {h['pnl_pct']:+.1f}%（{pair(p)}）{day}")
             ol = tk.get("hold_outlook_current_bucket") or {}
             for key, label in (("10d", "10日後"), ("20d", "20日後")):
                 o = ol.get(key)
                 if o and "avg_pnl_usd" in o:
                     lines.append(
-                        f"   ▼売らずに{label}: 平均 {o['avg_ret_pct']:+.1f}%（{o['avg_pnl_usd']:+,}$／{jpy(o['avg_pnl_usd'])}）"
-                        f" / 悪い10% {o['p10_pct']:+.1f}%（{o['p10_loss_usd']:+,}$／{jpy(o['p10_loss_usd'])}）"
+                        f"   ▼売らずに{label}: 平均 {o['avg_ret_pct']:+.1f}%（{pair(o['avg_pnl_usd'])}）"
+                        f" / 悪い10% {o['p10_pct']:+.1f}%（{pair(o['p10_loss_usd'])}）"
                         f" / 下落確率{o['loss_rate_pct']:.0f}%")
         else:
             lines.append(f"■ {tk['ticker']}（未保有）現在 ${tk['price']}")
@@ -317,19 +343,21 @@ def holdings_section(summary):
                     f" / 最悪 {o['worst_pct']:+.1f}%（$1,000あたり 平均{a:+,}$／最悪{w:+,}$）")
     if tot_v:
         lines.append("―" * 20)
-        lines.append(f"合計評価額 ${tot_v:,.0f}（{jpy(tot_v).replace('+', '')}） / 取得来 {tot_p:+,.0f}$（{jpy(tot_p)}）")
+        lines.append(f"合計評価額 {val(tot_v)} / 取得来 {pair(tot_p)}")
     lines.append("※過去統計に基づく参考値。将来を保証するものではありません")
     return "\n".join(lines)
 
 
 # ===================== 6. Gemini API =====================
 
-def call_gemini(summary):
+def call_gemini(summary, changes_text=""):
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not api_key:
-        print("⚠ GEMINI_API_KEY未設定 → ルールベース要約で代替")
+        print("⚠ GEMINI_API_KEY未設定 → AIコメントなしで送信")
         return None
-    prompt = (TRADE_RULES + "\n\n【本日のシグナルデータ（JSON）】\n"
+    prompt = (TRADE_RULES
+              + "\n\n【前回からの変化】\n" + (changes_text or "なし")
+              + "\n\n【本日のシグナルデータ（JSON）】\n"
               + json.dumps(summary, ensure_ascii=False, indent=1))
     models = [os.environ.get("GEMINI_MODEL", "").strip() or GEMINI_FALLBACK_MODELS[0]]
     models += [m for m in GEMINI_FALLBACK_MODELS if m not in models]
@@ -358,32 +386,93 @@ def call_gemini(summary):
     return None
 
 
-def rule_based_report(summary):
-    """Geminiが使えない日でもメールが届くようにする保険（ルールをそのまま機械適用）"""
-    lines = ["（Gemini不通のためルールを機械適用した自動要約です）", ""]
+def action_for(tk):
+    """ユーザーのトレードルールを機械適用。(アクション文, 詳細表示するか, 種別) を返す"""
+    held = tk["holding"] is not None
+    b = tk["sell_side"]["mom_bucket"] or ""
+    n = tk["buy_side"]["true_count"]
+    if b.startswith("Lv3"):
+        if held:
+            return "Lv3急落 → 防衛線割れ分を1/3減。買い増し禁止", True, "sell"
+        return "Lv3急落 → 新規買い禁止・見送り", False, "none"
+    if b.startswith("Lv2"):
+        if held:
+            return "Lv2加速 → 買い増し停止。大きい保有・含み益は1/3減を検討", True, "sell"
+        return "Lv2加速 → 新規買い停止", False, "none"
+    if n >= 3:
+        return "反転シグナル3個 → もう1/4を追加買い", True, "buy"
+    if n == 2:
+        return "反転シグナル2個 → 予定額の1/4だけ打診買い", True, "buy"
+    if held:
+        return "何もしない（追加買い条件も未達）", False, "none"
+    return "見送り（買いシグナル不足）", False, "none"
+
+
+def todo_section(actions):
+    groups = {}
+    for t, (act, _, _) in actions.items():
+        groups.setdefault(act, []).append(t)
+    lines = ["◆今日やること"]
+    inactive = lambda a: ("何もしない" in a) or ("見送り" in a) or ("停止" in a and "買い増し停止" not in a)
+    for act, ts in sorted(groups.items(), key=lambda kv: inactive(kv[0])):
+        lines.append(f"・{'/'.join(ts)}: {act}")
+    return "\n".join(lines)
+
+
+STATE_PATH = os.path.join("docs", "state.json")
+
+
+def load_state():
+    try:
+        with open(STATE_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def save_state(today, summary, prev):
+    cur = {tk["ticker"]: {"mom_bucket": tk["sell_side"]["mom_bucket"],
+                          "true_count": tk["buy_side"]["true_count"]}
+           for tk in summary["tickers"]}
+    # 同日に手動再実行しても「前営業日比」が壊れないようbaselineを保持
+    if prev and prev.get("date") == today:
+        baseline = prev.get("baseline")
+    else:
+        baseline = prev.get("tickers") if prev else None
+    os.makedirs("docs", exist_ok=True)
+    with open(STATE_PATH, "w", encoding="utf-8") as f:
+        json.dump({"date": today, "tickers": cur, "baseline": baseline},
+                  f, ensure_ascii=False, indent=1)
+
+
+def changes_section(today, summary, prev):
+    lines = ["◆前回からの変化"]
+    if not prev:
+        lines.append("・（初回のため変化の追跡は次回から）")
+        return "\n".join(lines)
+    base = prev.get("baseline") if prev.get("date") == today else prev.get("tickers")
+    if not base:
+        lines.append("・（比較データなし）")
+        return "\n".join(lines)
+    found = False
     for tk in summary["tickers"]:
-        t, sell_b = tk["ticker"], tk["sell_side"]["mom_bucket"] or "?"
-        n = tk["buy_side"]["true_count"]
-        held = tk["holding"] is not None
-        if sell_b.startswith("Lv3"):
-            act = "急落。パニック売り禁止。防衛線を割った分だけ1/3減。買い増し禁止" if held else "急落中。買い増し禁止（新規も見送り）"
-        elif sell_b.startswith("Lv2"):
-            act = "加速。買い増し停止。大きい保有・含み益なら1/3減を検討" if held else "下落加速中。新規買いは停止"
-        else:
-            act = {0: "買わない。現金維持", 1: "買わない。現金維持",
-                   2: "反転シグナル2つ点灯 → 予定額の1/4だけ打診買い",
-                   3: "反転シグナル3つ点灯 → もう1/4を追加"}[n]
-            if not held and n < 2:
-                act = "様子見（アクションなし）"
-        pnl = f" 損益{tk['holding']['pnl_pct']:+.1f}%" if held else ""
-        lines.append(f"■ {t} (${tk['price']}{pnl}) [{sell_b} / 買いTrue{n}個]")
-        lines.append(f"   → {act}")
-        ol = tk.get("hold_outlook_current_bucket") or {}
-        d10 = ol.get("10d")
-        if held and d10:
-            usd = f"（約${abs(d10['p10_loss_usd']):,}の含み減）" if d10.get("p10_loss_usd") else ""
-            lines.append(f"   売らずに10日持った過去統計: 平均{d10['avg_ret_pct']:+.1f}% / "
-                         f"下落確率{d10['loss_rate_pct']:.0f}% / 悪い10%で{d10['p10_pct']:+.1f}%{usd}")
+        t = tk["ticker"]
+        old = base.get(t)
+        if not old:
+            lines.append(f"・{t}: 新規に追跡開始")
+            found = True
+            continue
+        nb, ob = tk["sell_side"]["mom_bucket"], old.get("mom_bucket")
+        if nb != ob:
+            lines.append(f"・{t}: {ob} → {nb}")
+            found = True
+        nc, oc = tk["buy_side"]["true_count"], old.get("true_count")
+        if nc != oc:
+            arrow = "点灯↑" if nc > oc else "消灯↓"
+            lines.append(f"・{t}: 反転シグナル {oc}個 → {nc}個（{arrow}）")
+            found = True
+    if not found:
+        lines.append("・変化なし")
     return "\n".join(lines)
 
 
@@ -437,26 +526,31 @@ def main():
     print("\n===== 5/6 AIレポート生成 =====")
     usdjpy = fetch_usdjpy()
     summary = build_summary(today, usdjpy)
-    report = None if args.skip_gemini else call_gemini(summary)
+    actions = {tk["ticker"]: action_for(tk) for tk in summary["tickers"]}
+    prev = load_state()
+    changes = changes_section(today, summary, prev)
+    save_state(today, summary, prev)
+    # 生データはメールに載せず、リポジトリに保存（検証用）
+    with open(os.path.join("docs", "summary_latest.json"), "w", encoding="utf-8") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=1)
+
+    report = None if args.skip_gemini else call_gemini(summary, changes)
     if report is None:
-        report = rule_based_report(summary)
+        report = "（本日はAIコメントなし。上の「今日やること」と下の詳細数値を参照）"
 
-    lv3 = sum(1 for x in summary["tickers"]
-              if (x["sell_side"]["mom_bucket"] or "").startswith("Lv3"))
-    lv2 = sum(1 for x in summary["tickers"]
-              if (x["sell_side"]["mom_bucket"] or "").startswith("Lv2"))
-    buys = sum(1 for x in summary["tickers"] if x["buy_side"]["true_count"] >= 2)
-    subject = f"【売買シグナル】{today} | Lv3:{lv3} Lv2:{lv2} | 買い候補:{buys}"
-    body = (f"本日のトレードアシスタントレポート（{today}）\n"
-            f"買いダッシュボード: {SITE_URL}\n"
-            f"売りダッシュボード: {SITE_URL}exit/\n"
-            + "=" * 40 + "\n"
-            + holdings_section(summary) + "\n"
-            + "=" * 40 + "\n\n" + report + "\n\n" + "=" * 40
-            + "\n\n【本日の生データ】\n"
-            + json.dumps(summary, ensure_ascii=False, indent=1))
+    md = f"{int(today[5:7])}/{int(today[8:10])}"
+    sells = [t for t, a in actions.items() if a[2] == "sell"]
+    buy_ts = [t for t, a in actions.items() if a[2] == "buy"]
+    subject = (f"【シグナル】{md} | 売り: {'/'.join(sells) if sells else 'なし'}"
+               f" | 買い: {'/'.join(buy_ts) if buy_ts else 'なし'}")
+    body = (f"シグナルレポート（{today}）\n\n"
+            + todo_section(actions) + "\n\n"
+            + changes + "\n\n"
+            + "◆AIコメント\n" + report + "\n\n"
+            + holdings_section(summary, actions) + "\n\n"
+            + f"買いダッシュボード: {SITE_URL}\n売りダッシュボード: {SITE_URL}exit/")
 
-    print("\n----- レポート本文 -----\n" + report + "\n------------------------")
+    print("\n----- メール本文 -----\n" + body[:2500] + "\n------------------------")
 
     print("\n===== 6/6 メール送信 =====")
     if args.skip_email:
