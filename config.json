@@ -25,10 +25,11 @@
   "comment_output": "結果JSONとHTMLを保存するサブフォルダ名。日付つきで保存される",
 
   "my_holdings": {
-    "comment": "（任意）自分の保有を書いておくと、現在ゾーンと一緒に含み損益も表示される。不要なら空のままでOK。2026/6/21時点の保有を記載",
-    "WULF": {"qty": 140, "avg_cost_usd": 15.04},
-    "AMD":  {"qty": 17,  "avg_cost_usd": 296.72},
-    "MRVL": {"qty": 50,  "avg_cost_usd": 138.13},
+    "comment": "（任意）自分の保有。2026/7/18に楽天証券の取引履歴CSVから移動平均法で再計算（手数料込み）",
+    "WULF": {"qty": 111, "avg_cost_usd": 14.88},
+    "AMD":  {"qty": 17,  "avg_cost_usd": 275.92},
+    "MRVL": {"qty": 16,  "avg_cost_usd": 127.09},
+    "TXG":  {"qty": 37,  "avg_cost_usd": 43.38},
     "CRCL": {"qty": 0,   "avg_cost_usd": 0},
     "NBIS": {"qty": 0,   "avg_cost_usd": 0}
   }
