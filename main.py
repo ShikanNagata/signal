@@ -77,6 +77,11 @@ TRADE_RULES = """あなたは私の専属トレードアシスタントです。
 - トップレベルの usdjpy: ドル円レート。円換算はこれを掛けた概算を使うこと（自分で為替を推測しない）
 - buy_outlook_current_bucket: 「現在の買い側シグナル状態で、ここで買ってN日持ったら」の過去統計
   （avg_ret_pct=平均リターン%, win_rate_pct=勝率%, worst_pct=最悪ケース%）。買い判断に言及する際の根拠に使う
+- p_down10_pct / p_down20_pct: 売らずにN日持って-10%超／-20%超の下落になった過去頻度(%)。
+  この確率が高い保有銘柄は売り警戒を強めにコメントする
+- signal_lines: 防衛線（MA5/MA50/MA200。終値がこれを割るとシグナル本数が減る判定線）。
+  broken=true は割れ済み。「防衛線を割った分だけ1/3減」の判断はこのラインを根拠に、具体的な価格で言うこと
+  （例:「MA50=$205.30を割れ済みなので、ルール上1/3減の対象」）
 - 金額に言及するときはドルと円の両方を書くこと（例: -$437（約-6.6万円））
 
 保有中の銘柄には必ず「いま売らずに持ち続けた場合の見通し」を1〜2行入れること。
@@ -220,7 +225,9 @@ def build_summary(today, usdjpy=None):
                 continue
             o = {"avg_ret_pct": cell["avg_ret"],
                  "loss_rate_pct": cell["loss_rate"],
-                 "p10_pct": cell["p10"]}
+                 "p10_pct": cell["p10"],
+                 "p_down10_pct": cell.get("p_down10"),
+                 "p_down20_pct": cell.get("p_down20")}
             m = mae_rows.get(str(d))
             if m:
                 o["mae_med_pct"] = m["med"]
@@ -238,6 +245,16 @@ def build_summary(today, usdjpy=None):
             for o in outlook.values():
                 o["avg_pnl_usd"] = round(value * o["avg_ret_pct"] / 100)
                 o["p10_loss_usd"] = round(value * o["p10_pct"] / 100)
+        # 防衛線＝割るとシグナル本数が減るライン（sig_scoreの判定線 MA5/50/200）
+        signal_lines = {}
+        for name in ("ma5", "ma50", "ma200"):
+            mv = cur.get(name)
+            if mv:
+                signal_lines[name.upper()] = {
+                    "price": mv,
+                    "dist_pct": round((mv / cur["price"] - 1) * 100, 1),
+                    "broken": cur["price"] < mv}
+
         # 「ここで買ってN日持ったら」統計（買い側マトリックスの現在バケット行）
         buy_bucket = cur.get("bucket")
         bmtx = b.get("matrix", {}).get("cells", {})
@@ -263,6 +280,7 @@ def build_summary(today, usdjpy=None):
             },
             "hold_outlook_current_bucket": outlook or None,
             "buy_outlook_current_bucket": buy_outlook or None,
+            "signal_lines": signal_lines or None,
             "buy_side": {
                 "bucket": cur.get("bucket"),
                 "sig_score": cur.get("sig_score"),
@@ -325,10 +343,22 @@ def holdings_section(summary, actions=None):
             for key, label in (("10d", "10日後"), ("20d", "20日後")):
                 o = ol.get(key)
                 if o and "avg_pnl_usd" in o:
+                    dp = ""
+                    if o.get("p_down10_pct") is not None:
+                        dp = f"（うち-10%超:{o['p_down10_pct']:.0f}% / -20%超:{o['p_down20_pct']:.0f}%）"
                     lines.append(
                         f"   ▼売らずに{label}: 平均 {o['avg_ret_pct']:+.1f}%（{pair(o['avg_pnl_usd'])}）"
                         f" / 悪い10% {o['p10_pct']:+.1f}%（{pair(o['p10_loss_usd'])}）"
-                        f" / 下落確率{o['loss_rate_pct']:.0f}%")
+                        f" / 下落確率{o['loss_rate_pct']:.0f}%{dp}")
+            sl = tk.get("signal_lines") or {}
+            if sl:
+                parts = []
+                for k in ("MA5", "MA50", "MA200"):
+                    d = sl.get(k)
+                    if d:
+                        parts.append(f"{k} ${d['price']}" + ("【割れ済み】" if d["broken"]
+                                     else f"（あと{d['dist_pct']:.1f}%で割れ）"))
+                lines.append("   防衛線（割るとシグナル減）: " + " / ".join(parts))
         else:
             lines.append(f"■ {tk['ticker']}（未保有）現在 ${tk['price']}")
         bo = tk.get("buy_outlook_current_bucket") or {}
@@ -417,6 +447,26 @@ def todo_section(actions):
     for act, ts in sorted(groups.items(), key=lambda kv: inactive(kv[0])):
         lines.append(f"・{'/'.join(ts)}: {act}")
     return "\n".join(lines)
+
+
+def stats_memo(summary):
+    """ルール外だが統計的に注目の銘柄（買い妙味・大幅下落リスク）を通知"""
+    lines = []
+    for tk in summary["tickers"]:
+        t = tk["ticker"]
+        bo = (tk.get("buy_outlook_current_bucket") or {}).get("10d")
+        n = tk["buy_side"]["true_count"]
+        if bo and bo["win_rate_pct"] >= 70 and bo["avg_ret_pct"] >= 5 and n < 2:
+            lines.append(f"・{t}: 今の状態からの買いは過去 勝率{bo['win_rate_pct']:.0f}%・"
+                         f"10日平均{bo['avg_ret_pct']:+.1f}%と良好（ただし反転シグナル{n}個でルール上は見送り。"
+                         f"点灯待ちが規律）")
+        ho = (tk.get("hold_outlook_current_bucket") or {}).get("10d")
+        if tk["holding"] and ho and ho.get("p_down10_pct") and ho["p_down10_pct"] >= 25:
+            lines.append(f"・{t}: 今の状態から10日で-10%超になった過去頻度が{ho['p_down10_pct']:.0f}%と高め。"
+                         f"防衛線と1/3減ルールを意識")
+    if not lines:
+        return ""
+    return "◆統計メモ（ルール外の参考情報）\n" + "\n".join(lines)
 
 
 STATE_PATH = os.path.join("docs", "state.json")
@@ -543,8 +593,10 @@ def main():
     buy_ts = [t for t, a in actions.items() if a[2] == "buy"]
     subject = (f"【シグナル】{md} | 売り: {'/'.join(sells) if sells else 'なし'}"
                f" | 買い: {'/'.join(buy_ts) if buy_ts else 'なし'}")
+    memo = stats_memo(summary)
     body = (f"シグナルレポート（{today}）\n\n"
             + todo_section(actions) + "\n\n"
+            + (memo + "\n\n" if memo else "")
             + changes + "\n\n"
             + "◆AIコメント\n" + report + "\n\n"
             + holdings_section(summary, actions) + "\n\n"

@@ -136,6 +136,8 @@ def _stats(rets):
         "p10": round(float(np.percentile(a, 10)), 2),
         "worst": round(float(a.min()), 2),
         "best": round(float(a.max()), 2),
+        "p_down10": round(float((a <= -10).mean()) * 100, 1),
+        "p_down20": round(float((a <= -20).mean()) * 100, 1),
     }
 
 
