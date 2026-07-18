@@ -67,8 +67,20 @@ TRADE_RULES = """あなたは私の専属トレードアシスタントです。
 - Trueが2個：予定額の1/4だけ打診買い
 - Trueが3個：もう1/4を追加
 
-出力形式: 銘柄ごとに「本日のアクション」を1〜3行で。最後に全体サマリーを2〜3行。
-保有していない銘柄（holdingがnull）に売りアクションは不要。日本語で簡潔に。"""
+■ 追加データの読み方（hold_outlook_current_bucket）
+「現在と同じ下落レベルだった過去の日に、売らずにN日持ち続けたらどうなったか」の統計:
+- avg_ret_pct: N日後の平均リターン(%) / loss_rate_pct: N日後に値下がりしていた確率(%)
+- p10_pct: 悪い方から10%のシナリオ（10回に1回はこれ以下を食らう）
+- mae_med_pct / mae_p10_pct: N日間の途中でつけた最大の下振れ（中央値／悪い10%）
+- position_value_usd: 現在の保有評価額 / p10_loss_usd_10d: 悪い10%シナリオ（10日）での想定損失額（ドル）
+
+保有中の銘柄には必ず「いま売らずに持ち続けた場合の見通し」を1〜2行入れること。
+例:「10日持つと平均+2.7%だが43%の確率で下落。悪い10%なら-9.3%（約$230の含み減）。しかも途中では中央値でも-11%掘るので、そこで狼狽売りしない覚悟が必要」
+平均・下落確率・悪い10%の3点セットで判断できるように書くこと。
+
+出力形式: 銘柄ごとに「本日のアクション」を1〜3行＋保有銘柄は上記の見通し1〜2行。最後に全体サマリーを2〜3行。
+保有していない銘柄（holdingがnull）に売りアクションは不要。日本語で簡潔に。
+最後に「数字は過去統計であり将来を保証しない」旨を一言添える。"""
 
 
 # ===================== 1. 株価CSV更新 =====================
@@ -164,6 +176,28 @@ def build_summary(today):
             holding = {"qty": cur["holding_qty"],
                        "avg_cost_usd": cur["holding_avg"],
                        "pnl_pct": cur["holding_pnl_pct"]}
+
+        # 「売らずにN日持ったら」統計（現在の下落レベルの行だけ抜粋）
+        bucket = s.get("mom_bucket")
+        mtx_cells = sell.get(t, {}).get("matrix", {}).get("cells", {})
+        mae_rows = (sell.get(t, {}).get("mae", {}) or {}).get(bucket, {}) if bucket else {}
+        outlook = {}
+        for d in (5, 10, 20):
+            cell = mtx_cells.get(f"{d}_{bucket}") if bucket else None
+            if not cell:
+                continue
+            o = {"avg_ret_pct": cell["avg_ret"],
+                 "loss_rate_pct": cell["loss_rate"],
+                 "p10_pct": cell["p10"]}
+            m = mae_rows.get(str(d))
+            if m:
+                o["mae_med_pct"] = m["med"]
+                o["mae_p10_pct"] = m["p10"]
+            outlook[f"{d}d"] = o
+        if holding and outlook.get("10d"):
+            value = round(holding["qty"] * cur["price"])
+            outlook["position_value_usd"] = value
+            outlook["p10_loss_usd_10d"] = round(value * outlook["10d"]["p10_pct"] / 100)
         summary["tickers"].append({
             "ticker": t,
             "price": cur["price"],
@@ -176,6 +210,7 @@ def build_summary(today):
                 "drawdown60d_pct": s.get("dd60"),
                 "vol_zone": s.get("vol_zone"),
             },
+            "hold_outlook_current_bucket": outlook or None,
             "buy_side": {
                 "bucket": cur.get("bucket"),
                 "sig_score": cur.get("sig_score"),
@@ -246,6 +281,12 @@ def rule_based_report(summary):
         pnl = f" 損益{tk['holding']['pnl_pct']:+.1f}%" if held else ""
         lines.append(f"■ {t} (${tk['price']}{pnl}) [{sell_b} / 買いTrue{n}個]")
         lines.append(f"   → {act}")
+        ol = tk.get("hold_outlook_current_bucket") or {}
+        d10 = ol.get("10d")
+        if held and d10:
+            usd = f"（約${abs(ol['p10_loss_usd_10d']):,}の含み減）" if ol.get("p10_loss_usd_10d") else ""
+            lines.append(f"   売らずに10日持った過去統計: 平均{d10['avg_ret_pct']:+.1f}% / "
+                         f"下落確率{d10['loss_rate_pct']:.0f}% / 悪い10%で{d10['p10_pct']:+.1f}%{usd}")
     return "\n".join(lines)
 
 
