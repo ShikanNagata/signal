@@ -75,6 +75,8 @@ TRADE_RULES = """あなたは私の専属トレードアシスタントです。
 - 各期間の avg_pnl_usd / p10_loss_usd: 保有評価額に換算した平均損益・悪い10%シナリオの損失（ドル）
 - holding の value_usd=現在の評価額 / pnl_usd=取得来損益＄ / day_change_usd=前日比＄
 - トップレベルの usdjpy: ドル円レート。円換算はこれを掛けた概算を使うこと（自分で為替を推測しない）
+- buy_outlook_current_bucket: 「現在の買い側シグナル状態で、ここで買ってN日持ったら」の過去統計
+  （avg_ret_pct=平均リターン%, win_rate_pct=勝率%, worst_pct=最悪ケース%）。買い判断に言及する際の根拠に使う
 - 金額に言及するときはドルと円の両方を書くこと（例: -$437（約-6.6万円））
 
 保有中の銘柄には必ず「いま売らずに持ち続けた場合の見通し」を1〜2行入れること。
@@ -232,6 +234,17 @@ def build_summary(today, usdjpy=None):
             for o in outlook.values():
                 o["avg_pnl_usd"] = round(value * o["avg_ret_pct"] / 100)
                 o["p10_loss_usd"] = round(value * o["p10_pct"] / 100)
+        # 「ここで買ってN日持ったら」統計（買い側マトリックスの現在バケット行）
+        buy_bucket = cur.get("bucket")
+        bmtx = b.get("matrix", {}).get("cells", {})
+        buy_outlook = {}
+        for d in (5, 10, 20):
+            cell = bmtx.get(f"{d}_{buy_bucket}") if buy_bucket else None
+            if cell:
+                buy_outlook[f"{d}d"] = {"avg_ret_pct": cell["avg_ret"],
+                                        "win_rate_pct": cell["win_rate"],
+                                        "worst_pct": cell["worst"]}
+
         summary["tickers"].append({
             "ticker": t,
             "price": cur["price"],
@@ -245,6 +258,7 @@ def build_summary(today, usdjpy=None):
                 "vol_zone": s.get("vol_zone"),
             },
             "hold_outlook_current_bucket": outlook or None,
+            "buy_outlook_current_bucket": buy_outlook or None,
             "buy_side": {
                 "bucket": cur.get("bucket"),
                 "sig_score": cur.get("sig_score"),
@@ -260,39 +274,50 @@ def build_summary(today, usdjpy=None):
 
 
 def holdings_section(summary):
-    """Pythonで確定計算した保有状況（Geminiに依存しない正確な数字のセクション）"""
+    """Pythonで確定計算した保有状況＋売買両面の見通し（Geminiに依存しない正確な数字）"""
     rate = summary.get("usdjpy")
 
     def jpy(usd):
         if rate is None:
             return ""
         v = usd * rate
-        return f"（約{v/10000:+,.1f}万円）" if abs(v) >= 10000 else f"（約{v:+,.0f}円）"
+        return f"約{v/10000:+,.1f}万円" if abs(v) >= 10000 else f"約{v:+,.0f}円"
 
-    lines = ["【保有状況】" + (f"USD/JPY={rate}" if rate else "（円換算レート取得失敗のためドルのみ）")]
+    lines = ["【保有状況と売買の見通し】" + (f"USD/JPY={rate}" if rate else "（円換算レート取得失敗のためドルのみ）")]
     tot_v = tot_p = 0.0
     for tk in summary["tickers"]:
         h = tk.get("holding")
-        if not h:
-            continue
-        v, p = h["value_usd"], h["pnl_usd"]
-        tot_v += v
-        tot_p += p
-        dc = h.get("day_change_usd")
-        day = f" / 前日比 {dc:+,}$" if dc is not None else ""
-        lines.append(f"■ {tk['ticker']}: {h['qty']}株 × ${tk['price']} = ${v:,}{jpy(v).replace('+','')}")
-        lines.append(f"   取得来 {p:+,}$（{h['pnl_pct']:+.1f}%）{jpy(p)}{day}")
-        ol = tk.get("hold_outlook_current_bucket") or {}
+        if h:
+            v, p = h["value_usd"], h["pnl_usd"]
+            tot_v += v
+            tot_p += p
+            dc = h.get("day_change_usd")
+            day = f" / 前日比 {dc:+,}$" if dc is not None else ""
+            lines.append(f"■ {tk['ticker']}: {h['qty']}株 × ${tk['price']} = ${v:,}（{jpy(v).replace('+', '')}）")
+            lines.append(f"   取得来 {h['pnl_pct']:+.1f}%（{p:+,}$／{jpy(p)}）{day}")
+            ol = tk.get("hold_outlook_current_bucket") or {}
+            for key, label in (("10d", "10日後"), ("20d", "20日後")):
+                o = ol.get(key)
+                if o and "avg_pnl_usd" in o:
+                    lines.append(
+                        f"   ▼売らずに{label}: 平均 {o['avg_ret_pct']:+.1f}%（{o['avg_pnl_usd']:+,}$／{jpy(o['avg_pnl_usd'])}）"
+                        f" / 悪い10% {o['p10_pct']:+.1f}%（{o['p10_loss_usd']:+,}$／{jpy(o['p10_loss_usd'])}）"
+                        f" / 下落確率{o['loss_rate_pct']:.0f}%")
+        else:
+            lines.append(f"■ {tk['ticker']}（未保有）現在 ${tk['price']}")
+        bo = tk.get("buy_outlook_current_bucket") or {}
+        verb = "買い増すと" if h else "買うと"
         for key, label in (("10d", "10日後"), ("20d", "20日後")):
-            o = ol.get(key)
-            if o and "avg_pnl_usd" in o:
+            o = bo.get(key)
+            if o:
+                a = round(1000 * o["avg_ret_pct"] / 100)
+                w = round(1000 * o["worst_pct"] / 100)
                 lines.append(
-                    f"   売らずに{label}: 平均 {o['avg_pnl_usd']:+,}$ {jpy(o['avg_pnl_usd'])}"
-                    f" / 悪い10%だと {o['p10_loss_usd']:+,}$ {jpy(o['p10_loss_usd'])}"
-                    f"（下落確率{o['loss_rate_pct']:.0f}%）")
+                    f"   ▲ここで{verb}{label}: 平均 {o['avg_ret_pct']:+.1f}%・勝率{o['win_rate_pct']:.0f}%"
+                    f" / 最悪 {o['worst_pct']:+.1f}%（$1,000あたり 平均{a:+,}$／最悪{w:+,}$）")
     if tot_v:
         lines.append("―" * 20)
-        lines.append(f"合計評価額 ${tot_v:,.0f}{jpy(tot_v).replace('+','')} / 取得来 {tot_p:+,.0f}$ {jpy(tot_p)}")
+        lines.append(f"合計評価額 ${tot_v:,.0f}（{jpy(tot_v).replace('+', '')}） / 取得来 {tot_p:+,.0f}$（{jpy(tot_p)}）")
     lines.append("※過去統計に基づく参考値。将来を保証するものではありません")
     return "\n".join(lines)
 
