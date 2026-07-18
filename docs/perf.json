@@ -1,0 +1,27 @@
+{
+ "start_date": "2026-07-18",
+ "baseline": {
+  "WULF": 111,
+  "AMD": 17,
+  "MRVL": 16,
+  "CRCL": 0,
+  "NBIS": 0,
+  "TXG": 37
+ },
+ "cash": 0.0,
+ "last_holdings": {
+  "WULF": 111,
+  "AMD": 17,
+  "MRVL": 16,
+  "CRCL": 0,
+  "NBIS": 0,
+  "TXG": 37
+ },
+ "history": [
+  {
+   "date": "2026-07-18",
+   "actual": 15080.94,
+   "hold": 15080.94
+  }
+ ]
+}

@@ -622,5 +622,19 @@
     ]
    }
   }
- ]
+ ],
+ "regime": {
+  "QQQ": {
+   "price": 695.33,
+   "ma200": 639.53,
+   "above": true,
+   "dist_pct": 8.7
+  },
+  "BTC": {
+   "price": 64028.31,
+   "ma200": 73154.88,
+   "above": false,
+   "dist_pct": -12.5
+  }
+ }
 }
