@@ -1,0 +1,49 @@
+name: Daily signal update
+
+on:
+  schedule:
+    # 23:00 UTC 月〜金 = 日本時間 火〜土の朝8:00（米国市場クローズ後）
+    - cron: "0 23 * * 1-5"
+  workflow_dispatch: {}   # 手動実行ボタン（テスト用）
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-signal
+  cancel-in-progress: false
+
+jobs:
+  build-and-notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Asia/Tokyo   # 日付表示・ファイル名を日本時間に揃える
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline (fetch -> HTML -> Gemini -> Gmail)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-3.5-flash
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python main.py
+
+      - name: Commit updated data & site
+        run: |
+          git config user.name "signal-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/*.csv docs
+          git diff --cached --quiet || git commit -m "auto: daily update $(date +%F)"
+          git push
