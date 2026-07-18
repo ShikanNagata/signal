@@ -1,0 +1,35 @@
+{
+  "comment": "===== 設定ファイル：ここを編集すれば対象銘柄や期間を変えられます =====",
+
+  "tickers": ["WULF", "AMD", "MRVL", "CRCL", "NBIS", "TXG"],
+  "comment_tickers": "分析したい銘柄をここに並べる。増減自由。例: [\"WULF\",\"AMD\",\"MRVL\",\"IONQ\",\"NBIS\"]",
+
+  "history_period": "550d",
+  "comment_period": "取得する過去データの長さ。'2y'=2年, '550d'=550日, '1y'=1年。MA200を使うので最低でも300日以上推奨",
+
+  "hold_days": [5, 10, 20, 40, 80],
+  "comment_hold_days": "保有日数の刻み。バックテストで「N日保有したら」を計算する区切り",
+
+  "rsi_period": 14,
+  "rsi_overheated": 70,
+  "comment_rsi": "RSI計算期間と、過熱とみなすしきい値（70以上で『3/3過熱』判定）",
+
+  "volume_zones": {
+    "Ignition": 3.0,
+    "Active": 1.5,
+    "High": 0.8,
+    "comment": "出来高ゾーンの境界（40日中央値に対する比率）。3倍以上=Ignition, 1.5倍以上=Active, 0.8倍以上=High, それ未満=Normal"
+  },
+
+  "output_dir": "results",
+  "comment_output": "結果JSONとHTMLを保存するサブフォルダ名。日付つきで保存される",
+
+  "my_holdings": {
+    "comment": "（任意）自分の保有を書いておくと、現在ゾーンと一緒に含み損益も表示される。不要なら空のままでOK。2026/6/21時点の保有を記載",
+    "WULF": {"qty": 140, "avg_cost_usd": 15.04},
+    "AMD":  {"qty": 17,  "avg_cost_usd": 296.72},
+    "MRVL": {"qty": 50,  "avg_cost_usd": 138.13},
+    "CRCL": {"qty": 0,   "avg_cost_usd": 0},
+    "NBIS": {"qty": 0,   "avg_cost_usd": 0}
+  }
+}

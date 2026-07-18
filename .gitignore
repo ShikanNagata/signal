@@ -1,0 +1,10 @@
+# 秘密情報（絶対にコミットしない）
+data/publish_config.json
+
+# 日付つきアーカイブ（毎日肥大化するためリポには入れない。公開分はdocs/にある）
+results/
+sell/results/
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,332 @@
+{
+  "WULF": {
+    "insider": {
+      "current": {
+        "year": 2026,
+        "quarter": 2,
+        "ratio": 0.6809,
+        "purchases": 0,
+        "sales": 9,
+        "acquired": 10210619,
+        "disposed": 16048011
+      },
+      "prev": {
+        "year": 2026,
+        "quarter": 1,
+        "ratio": 2.5556,
+        "purchases": 9,
+        "sales": 5,
+        "acquired": 29484664,
+        "disposed": 903687
+      }
+    },
+    "institutional": {
+      "date": "2026-03-31",
+      "holders": 520,
+      "holdersChange": 31,
+      "ownershipPct": 74.8703,
+      "ownershipChange": 0.6757,
+      "newPositions": 114,
+      "increasedPositions": 280,
+      "closedPositions": 71,
+      "reducedPositions": 138,
+      "putCallRatio": 0.5319,
+      "putCallChange": -4.0877
+    },
+    "news": [
+      {
+        "title": "Bitcoin Miners Cash In as AI Hits a Power Bottleneck",
+        "url": "https://www.etftrends.com/coinshares-content-hub/bitcoin-miners-cash-in-as-ai-hits-power-bottleneck/",
+        "date": "2026-07-15 15:28:53",
+        "publisher": "ETF Trends"
+      },
+      {
+        "title": "TeraWulf Stock Panics Over New York's Data-Center Moratorium, but Wall Street Sees a Steal",
+        "url": "https://www.barrons.com/articles/terawulf-stock-ny-data-center-moratorium-2ba77955",
+        "date": "2026-07-15 12:57:00",
+        "publisher": "Barrons"
+      },
+      {
+        "title": "Why These Cheap Artificial Intelligence (AI) Stocks Are Still a Buy Despite the Selloff",
+        "url": "https://investorplace.com/hypergrowthinvesting/2026/07/why-these-cheap-artificial-intelligence-ai-stocks-are-still-a-buy-despite-the-selloff/",
+        "date": "2026-07-14 00:00:00",
+        "publisher": "Investor Place"
+      }
+    ]
+  },
+  "AMD": {
+    "insider": {
+      "current": {
+        "year": 2026,
+        "quarter": 2,
+        "ratio": 0.1923,
+        "purchases": 0,
+        "sales": 67,
+        "acquired": 47166,
+        "disposed": 460903
+      },
+      "prev": {
+        "year": 2026,
+        "quarter": 1,
+        "ratio": 0.2909,
+        "purchases": 0,
+        "sales": 34,
+        "acquired": 947178,
+        "disposed": 1173363
+      }
+    },
+    "institutional": {
+      "date": "2026-03-31",
+      "holders": 3348,
+      "holdersChange": 33,
+      "ownershipPct": 65.8718,
+      "ownershipChange": -1.1442,
+      "newPositions": 299,
+      "increasedPositions": 1734,
+      "closedPositions": 271,
+      "reducedPositions": 1097,
+      "putCallRatio": 1.5392,
+      "putCallChange": 23.585
+    },
+    "news": [
+      {
+        "title": "AMD Falls 5%, Intel Drops 4%, NVIDIA Slides 3% Before Recovering as Rotation Hits Semiconductor Stocks",
+        "url": "https://247wallst.com/investing/2026/07/17/amd-falls-5-intel-drops-4-nvidia-slides-3-before-recovering-as-rotation-hits-semiconductor-stocks/",
+        "date": "2026-07-17 10:30:21",
+        "publisher": "24/7 Wall Street"
+      },
+      {
+        "title": "Why AMD Stock Might Keep Outpacing Nvidia From Here",
+        "url": "https://247wallst.com/investing/2026/07/17/why-amd-stock-might-keep-outpacing-nvidia-from-here/",
+        "date": "2026-07-17 10:29:48",
+        "publisher": "24/7 Wall Street"
+      },
+      {
+        "title": "Lagana: Expect Up to 40% Sell-Offs in AI Leaders, AMD Strength Stands Out",
+        "url": "https://www.youtube.com/watch?v=-MTvMlJBGMQ",
+        "date": "2026-07-17 10:00:31",
+        "publisher": "Schwab Network"
+      }
+    ]
+  },
+  "MRVL": {
+    "insider": {
+      "current": {
+        "year": 2026,
+        "quarter": 2,
+        "ratio": 0.5974,
+        "purchases": 0,
+        "sales": 15,
+        "acquired": 1927920,
+        "disposed": 2732103
+      },
+      "prev": {
+        "year": 2026,
+        "quarter": 1,
+        "ratio": 0.4634,
+        "purchases": 0,
+        "sales": 3,
+        "acquired": 258702,
+        "disposed": 464393
+      }
+    },
+    "institutional": {
+      "date": "2026-03-31",
+      "holders": 1625,
+      "holdersChange": 86,
+      "ownershipPct": 80.5597,
+      "ownershipChange": 0.6645,
+      "newPositions": 265,
+      "increasedPositions": 820,
+      "closedPositions": 176,
+      "reducedPositions": 540,
+      "putCallRatio": 1.8434,
+      "putCallChange": -9.1106
+    },
+    "news": [
+      {
+        "title": "3 Semiconductor Stocks to Buy Before AI Demand Explodes in July",
+        "url": "https://247wallst.com/investing/2026/07/17/3-semiconductor-stocks-to-buy-before-ai-demand-explodes-in-july/",
+        "date": "2026-07-17 09:00:08",
+        "publisher": "24/7 Wall Street"
+      },
+      {
+        "title": "Marvell Technology (MRVL) Falls More Steeply Than Broader Market: What Investors Need to Know",
+        "url": "https://www.zacks.com/stock/news/2955197/marvell-technology-mrvl-falls-more-steeply-than-broader-market-what-investors-need-to-know",
+        "date": "2026-07-16 18:52:02",
+        "publisher": "Zacks Investment Research"
+      },
+      {
+        "title": "Micron vs. Marvell: Which Pullback Is a Buy?",
+        "url": "https://www.zacks.com/commentary/2954302/micron-vs-marvell-which-pullback-is-a-buy",
+        "date": "2026-07-15 14:16:06",
+        "publisher": "Zacks Investment Research"
+      }
+    ]
+  },
+  "CRCL": {
+    "insider": {
+      "current": {
+        "year": 2026,
+        "quarter": 2,
+        "ratio": 0.3058,
+        "purchases": 0,
+        "sales": 78,
+        "acquired": 3951174,
+        "disposed": 5856839
+      },
+      "prev": {
+        "year": 2026,
+        "quarter": 1,
+        "ratio": 0.375,
+        "purchases": 0,
+        "sales": 47,
+        "acquired": 1365684,
+        "disposed": 1389947
+      }
+    },
+    "institutional": {
+      "date": "2026-03-31",
+      "holders": 610,
+      "holdersChange": 82,
+      "ownershipPct": 48.8769,
+      "ownershipChange": 3.693,
+      "newPositions": 172,
+      "increasedPositions": 381,
+      "closedPositions": 98,
+      "reducedPositions": 111,
+      "putCallRatio": 1.084,
+      "putCallChange": -18.705
+    },
+    "news": [
+      {
+        "title": "Coinbase Just Joined a 140-Company Stablecoin Alliance. Here's What It Means for the Stock.",
+        "url": "https://www.fool.com/investing/2026/07/16/coinbase-just-joined-a-140-company-stablecoin-alli/",
+        "date": "2026-07-16 08:30:00",
+        "publisher": "Fool - Investing News"
+      },
+      {
+        "title": "Coinbase, Circle stocks climb as analysts see Bitcoin-linked upside",
+        "url": "https://invezz.com/news/2026/07/15/coinbase-circle-stocks-climb-as-analysts-see-bitcoin-linked-upside/",
+        "date": "2026-07-15 15:29:06",
+        "publisher": "Invezz"
+      },
+      {
+        "title": "Trump's Crypto Push May Arrive Just in Time for Coinbase and Circle",
+        "url": "https://www.benzinga.com/trading-ideas/long-ideas/26/07/60477987/trumps-crypto-push-may-arrive-just-in-time-for-coinbase-and-circle",
+        "date": "2026-07-15 12:48:16",
+        "publisher": "Benzinga"
+      }
+    ]
+  },
+  "NBIS": {
+    "insider": {
+      "current": {
+        "year": 2026,
+        "quarter": 2,
+        "ratio": 0.0333,
+        "purchases": 0,
+        "sales": 29,
+        "acquired": 500000,
+        "disposed": 1160245
+      },
+      "prev": {
+        "year": 2026,
+        "quarter": 1,
+        "ratio": 0,
+        "purchases": 0,
+        "sales": 3,
+        "acquired": 0,
+        "disposed": 43501
+      }
+    },
+    "institutional": {
+      "date": "2026-03-31",
+      "holders": 803,
+      "holdersChange": 105,
+      "ownershipPct": 51.5206,
+      "ownershipChange": 10.245,
+      "newPositions": 190,
+      "increasedPositions": 479,
+      "closedPositions": 81,
+      "reducedPositions": 182,
+      "putCallRatio": 1.2768,
+      "putCallChange": 19.8057
+    },
+    "news": [
+      {
+        "title": "Nebius' $775 Million Debt Deal Changes Everything About Its AI Growth Story",
+        "url": "https://247wallst.com/investing/2026/07/17/nebius-775-million-debt-deal-changes-everything-about-its-ai-growth-story/",
+        "date": "2026-07-17 12:10:15",
+        "publisher": "24/7 Wall Street"
+      },
+      {
+        "title": "QUICK SPARK: Jim Cramer Says 'Nebius Is at the Nexus of the Craziness'",
+        "url": "https://www.benzinga.com/trading-ideas/movers/26/07/60525744/quick-spark-jim-cramer-says-nebius-is-at-the-nexus-of-the-craziness",
+        "date": "2026-07-17 10:30:09",
+        "publisher": "Benzinga"
+      },
+      {
+        "title": "Here's why IREN, CoreWeave, and Nebius stocks are in free fall",
+        "url": "https://invezz.com/news/2026/07/17/heres-why-iren-coreweave-and-nebius-stocks-are-in-free-fall/",
+        "date": "2026-07-17 09:10:00",
+        "publisher": "Invezz"
+      }
+    ]
+  },
+  "TXG": {
+    "insider": {
+      "current": {
+        "year": 2026,
+        "quarter": 2,
+        "ratio": 0.5455,
+        "purchases": 0,
+        "sales": 11,
+        "acquired": 52974,
+        "disposed": 96309
+      },
+      "prev": {
+        "year": 2026,
+        "quarter": 1,
+        "ratio": 0.3636,
+        "purchases": 0,
+        "sales": 8,
+        "acquired": 403290,
+        "disposed": 117907
+      }
+    },
+    "institutional": {
+      "date": "2026-03-31",
+      "holders": 338,
+      "holdersChange": 7,
+      "ownershipPct": 98.5061,
+      "ownershipChange": 0.2126,
+      "newPositions": 56,
+      "increasedPositions": 173,
+      "closedPositions": 49,
+      "reducedPositions": 103,
+      "putCallRatio": 0.0629,
+      "putCallChange": -39.0054
+    },
+    "news": [
+      {
+        "title": "Analyzing Mitesco (OTCMKTS:MITI) and 10x Genomics (NASDAQ:TXG)",
+        "url": "https://www.defenseworld.net/2026/07/17/analyzing-mitesco-otcmktsmiti-and-10x-genomics-nasdaqtxg.html",
+        "date": "2026-07-17 04:23:28",
+        "publisher": "Defense World"
+      },
+      {
+        "title": "10x Genomics to Report Second Quarter 2026 Financial Results on August 6, 2026",
+        "url": "https://www.prnewswire.com/news-releases/10x-genomics-to-report-second-quarter-2026-financial-results-on-august-6-2026-302826655.html",
+        "date": "2026-07-15 16:05:00",
+        "publisher": "PRNewsWire"
+      },
+      {
+        "title": "10x Genomics, Cleveland Clinic Team Up on Bladder Cancer Diagnostics",
+        "url": "https://www.zacks.com/stock/news/2940223/10x-genomics-cleveland-clinic-team-up-on-bladder-cancer-diagnostics",
+        "date": "2026-06-19 11:36:06",
+        "publisher": "Zacks Investment Research"
+      }
+    ]
+  }
+}

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>出口戦略マトリックス __TODAY__</title>
+<style>
+:root{--bg:#0F0E0C;--card:#1A1815;--sec:#252320;--text:#F5F2EB;--text2:#A8A39A;--text3:#6B6862;--border:#383530;--accent:#E55A47;--gold:#E5A623;--green:#4FBA8A;--greenB:#6BD8A6;--red:#E55A47;--redB:#FA7560;--blue:#5A9DDB;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Helvetica Neue',-apple-system,'Hiragino Sans',sans-serif;font-size:14px;line-height:1.55}
+.container{max-width:1200px;margin:0 auto;padding:32px 24px 60px}
+.header{border-bottom:1px solid var(--border);padding-bottom:20px;margin-bottom:24px}
+.header h1{font-size:26px;font-weight:300;margin:0 0 8px;font-family:Georgia,serif}
+.header h1 .a{color:var(--accent);font-style:italic}
+.header p{color:var(--text2);margin:0;font-size:13px}
+.meta{display:flex;gap:24px;margin-top:12px;font-size:12px;color:var(--text3);flex-wrap:wrap}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);flex-wrap:wrap;margin-bottom:0}
+.tab{padding:12px 22px;background:none;border:none;color:var(--text2);cursor:pointer;font-size:14px;border-bottom:2px solid transparent;font-family:inherit;letter-spacing:.05em}
+.tab:hover{color:var(--text)}.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.state{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px 24px;margin-bottom:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:20px}
+.state .lbl{font-size:11px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.state .val{font-size:22px;font-weight:300;font-family:Georgia,serif}.state .sub{font-size:11px;color:var(--text2);margin-top:2px}
+.bnow{display:inline-block;padding:4px 12px;border-radius:2px;font-size:12px;font-weight:500}
+.lv3{background:rgba(229,90,71,.2);color:#FA7560;border:1px solid #E55A47}
+.lv2{background:rgba(229,120,60,.15);color:#F09B5A;border:1px solid #D97B3C}
+.lv1{background:rgba(229,166,35,.12);color:#E5A623;border:1px solid #E5A623}
+.lv0{background:rgba(79,186,138,.12);color:#6BD8A6;border:1px solid #4FBA8A}
+h2{font-size:18px;font-weight:400;margin:36px 0 16px;display:flex;align-items:center;gap:12px}
+h2::before{content:'';width:24px;height:1px;background:var(--accent)}
+.mwrap{overflow-x:auto;margin:16px -8px;padding:8px}
+.matrix{display:grid;grid-template-columns:150px repeat(5,1fr);gap:2px;min-width:740px}
+.hc{background:var(--sec);padding:12px 8px;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);text-align:center;border-radius:2px}
+.rl{background:var(--sec);padding:14px 12px;font-size:13px;font-weight:500;display:flex;align-items:center;border-radius:2px;white-space:nowrap}
+.cell{padding:12px 10px;border-radius:2px;text-align:center;position:relative;min-height:96px;display:flex;flex-direction:column;justify-content:center;background:var(--card);border:1px solid var(--border);transition:transform .15s}
+.cell:hover{transform:translateY(-2px);border-color:var(--accent)}
+.cell .ev{font-size:18px;font-family:Georgia,serif;line-height:1.1}.cell .ml{font-size:10px;color:var(--text2);margin-top:6px}.cell .nl{font-size:10px;color:var(--text3);margin-top:2px}
+.sng{background:linear-gradient(135deg,rgba(229,90,71,.35),rgba(229,90,71,.18));border-color:#E55A47}.sng .ev{color:#FA7560}
+.ng{background:rgba(229,90,71,.15);border-color:rgba(229,90,71,.4)}.ng .ev{color:#FA7560}
+.wn{background:rgba(229,90,71,.06)}.wn .ev{color:#E55A47}
+.nt{background:var(--card)}.nt .ev{color:var(--text2)}
+.wp{background:rgba(79,186,138,.06)}.wp .ev{color:#4FBA8A}
+.p{background:rgba(79,186,138,.15)}.p .ev{color:#6BD8A6}
+.sp{background:linear-gradient(135deg,rgba(79,186,138,.4),rgba(79,186,138,.2));border-color:#4FBA8A}.sp .ev{color:#6BD8A6}
+.em{background:transparent;border:1px dashed var(--border)}.em .ev{color:var(--text3);font-size:12px}
+.now{position:absolute;top:-1px;right:-1px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:0 2px 0 4px}
+.legend{display:flex;gap:16px;margin-top:16px;font-size:11px;color:var(--text3);flex-wrap:wrap}
+.sw{width:12px;height:12px;display:inline-block;margin-right:4px;vertical-align:middle;border-radius:1px}
+.note{font-size:12px;color:var(--text3);margin:8px 0 16px;font-style:italic}
+.disc{margin-top:40px;padding:16px 20px;background:var(--sec);border-radius:4px;font-size:11px;color:var(--text3);line-height:1.6}
+.tlwrap{display:flex;gap:1px;overflow-x:auto;padding:10px 0;margin:8px 0;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.tlday{width:3px;min-width:3px;height:32px;border-radius:1px;flex-shrink:0;cursor:default;opacity:.85;transition:transform .1s,opacity .1s}
+.tlday:hover{opacity:1;transform:scaleY(1.5)}
+.dtbl{width:100%;border-collapse:collapse;margin-top:20px;font-size:12px}
+.dtbl th{color:var(--text3);font-weight:400;padding:6px 12px;border-bottom:1px solid var(--border);text-align:left;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.dtbl td{padding:8px 12px;border-bottom:1px solid var(--border)}
+.hvswrap{overflow-x:auto;margin:8px 0}
+.hvstbl{border-collapse:collapse;min-width:600px;width:100%;font-size:13px}
+.hvstbl th{background:var(--sec);padding:10px 14px;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);text-align:center;white-space:nowrap}
+.hvstbl th:first-child{text-align:left}
+.hvstbl td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;white-space:nowrap}
+.hvstbl td:first-child{text-align:left;color:var(--text2);font-size:12px}
+.hvstbl .sell-now-col{background:rgba(229,90,71,.06);border-left:2px solid var(--accent);border-right:2px solid var(--accent)}
+.hold-better{color:#6BD8A6;font-weight:500}.hold-worse{color:#FA7560}.hold-neutral{color:var(--text2)}
+.verdict{font-size:11px;margin-top:2px}
+.pnl-big{font-family:Georgia,serif;font-size:16px}
+.pnl-pos{color:#6BD8A6}.pnl-neg{color:#FA7560}.pnl-zero{color:var(--text2)}
+.verdict-box{margin-top:16px;padding:14px 18px;border-radius:4px;font-size:13px;line-height:1.6}
+.verdict-hold{background:rgba(79,186,138,.08);border:1px solid rgba(79,186,138,.3)}
+.verdict-sell{background:rgba(229,90,71,.08);border:1px solid rgba(229,90,71,.3)}
+.verdict-neutral{background:var(--sec);border:1px solid var(--border)}
+.gauge{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px 20px;margin-bottom:16px}
+.gauge-bar{height:10px;border-radius:5px;background:var(--sec);overflow:hidden;margin:10px 0 14px}
+.gauge-fill{height:100%;border-radius:5px;transition:width .3s}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:4px;font-size:12px;margin:0 8px 8px 0;border:1px solid var(--border);background:var(--sec);color:var(--text3)}
+.chip.on{border-color:#E55A47;background:rgba(229,90,71,.1);color:#FA7560}
+.chip .cv{font-family:Georgia,serif}
+.fmp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
+@media(max-width:600px){.fmp-grid{grid-template-columns:1fr}}
+.fmp-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px 20px}
+.fmp-card h3{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin:0 0 14px}
+.form4-row{padding:5px 0;border-bottom:1px solid var(--border);font-size:11px}
+.form4-row:last-child{border-bottom:none}
+.form4-meta{display:flex;justify-content:space-between}
+.form4-who{color:var(--text3);font-size:10px;margin-top:1px}
+.news-item{padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.news-item:last-child{border-bottom:none}
+.news-item a{color:var(--text);text-decoration:none;line-height:1.4;display:block}
+.news-item a:hover{color:var(--accent)}
+.news-item .nsrc{font-size:10px;color:var(--text3);margin-top:3px}
+.tl-tip{position:fixed;z-index:999;pointer-events:none;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:8px 12px;font-size:11px;min-width:165px;box-shadow:0 4px 16px rgba(0,0,0,.6);display:none;line-height:1.5}
+</style></head><body><div id="tl-tip" class="tl-tip"></div>
+<div class="container">
+<header class="header"><h1>出口戦略<span class="a"> マトリックス</span></h1>
+<p>いま売らずに持ち続けたら、何日後にいくら損する可能性があるか（__TODAY__時点）</p>
+<div class="meta"><span>期間: __PERIOD__</span><span>軸: 下落モメンタム複合スコア（速度＋加速度＋ドローダウン＋出来高）</span></div></header>
+<div class="tabs">__TABS__</div>
+<div id="content"></div>
+<div class="disc">バックテストは過去データに基づく統計で、将来を保証しません。下落スコア: 直近5日下落率(0-3点)＋MA20乖離の5日変化(0-2点)＋60日高値からのドローダウン(0-3点)＋下落日の高出来高(0-2点)の合計0-10点。Lv3=6点以上, Lv2=3-5点, Lv1=1-2点, Lv0=0点。n=営業日サンプル（重複あり）。悪い10%=リターン分布の10パーセンタイル。投資助言ではありません。</div>
+</div>
+<script>
+const RAW=__DATA__;
+const DATA=RAW.tickers;
+const POOLED=RAW.pooled;
+const BL=['Lv3 急落','Lv2 加速','Lv1 軟調','Lv0 平穏'];
+const BD={'Lv3 急落':'スコア6+ / パニック的下落','Lv2 加速':'スコア3-5 / 下落が加速中','Lv1 軟調':'スコア1-2 / 弱含み','Lv0 平穏':'スコア0 / 下落圧力なし'};
+const BC={'Lv3 急落':'lv3','Lv2 加速':'lv2','Lv1 軟調':'lv1','Lv0 平穏':'lv0'};
+const CLR={'Lv3 急落':'#E55A47','Lv2 加速':'#D97B3C','Lv1 軟調':'#E5A623','Lv0 平穏':'#4FBA8A'};
+function tc(a){if(a===null||a===undefined)return'em';if(a<=-20)return'sng';if(a<=-10)return'ng';if(a<=-3)return'wn';if(a<=3)return'nt';if(a<=10)return'wp';if(a<=20)return'p';return'sp'}
+function sgn(v){return v>=0?'+':''}
+let currentTicker='__FIRST__';
+
+function buildGauge(c){
+  var score=c.mom_score,pts=c.pts||{};
+  var pct=Math.min(100,score*10);
+  var col=score>=6?'#E55A47':score>=3?'#D97B3C':score>=1?'#E5A623':'#4FBA8A';
+  var h='<div class="gauge">';
+  h+='<div style="display:flex;justify-content:space-between;align-items:baseline">';
+  h+='<span style="font-size:11px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase">下落モメンタムスコア</span>';
+  h+='<span style="font-family:Georgia,serif;font-size:24px;color:'+col+'">'+score+'<span style="font-size:13px;color:var(--text3)"> / 10</span></span></div>';
+  h+='<div class="gauge-bar"><div class="gauge-fill" style="width:'+pct+'%;background:'+col+'"></div></div>';
+  var chips=[
+    ['速度: 5日 '+sgn(c.ret5)+c.ret5+'%',pts.speed,3],
+    ['加速度: MA20乖離 '+sgn(c.accel)+c.accel+'pt/5日',pts.accel,2],
+    ['DD: 60日高値から '+c.dd60+'%',pts.dd,3],
+    ['出来高: '+(c.vol_zone||'—')+(pts.vol>0?'×下落':''),pts.vol,2]
+  ];
+  for(var i=0;i<chips.length;i++){
+    var on=chips[i][1]>0;
+    h+='<span class="chip'+(on?' on':'')+'">'+(on?'●':'○')+' '+chips[i][0]+' <span class="cv">'+chips[i][1]+'/'+chips[i][2]+'点</span></span>';
+  }
+  h+='</div>';
+  return h;
+}
+
+function buildMatrix(m,c,epb,title,note){
+  var h='<h2>'+title+'</h2><div class="note">'+note+'</div><div class="mwrap"><div class="matrix"><div class="hc">下落Lv / 継続日数</div>';
+  for(var di=0;di<m.days.length;di++)h+='<div class="hc">+'+m.days[di]+'日</div>';
+  for(var bi=0;bi<BL.length;bi++){
+    var b=BL[bi];
+    var nep=epb?epb[b]:null;
+    h+='<div class="rl"><span class="bnow '+BC[b]+'" style="margin-right:0">'+b+'</span></div>';
+    for(var di=0;di<m.days.length;di++){
+      var d=m.days[di],cell=m.cells[d+'_'+b];
+      var isnow=c&&c.mom_bucket===b;
+      if(!cell){h+='<div class="cell em"><div class="ev">—</div><div class="ml">データなし</div></div>';continue;}
+      var cl=tc(cell.avg_ret);
+      var epTxt=(nep!=null)?' · '+nep+'回':'';
+      h+='<div class="cell '+cl+'">'+(isnow?'<span class="now">NOW</span>':'');
+      h+='<div class="ev">'+sgn(cell.avg_ret)+cell.avg_ret.toFixed(1)+'%</div>';
+      h+='<div class="ml">下落確率 '+cell.loss_rate.toFixed(0)+'% · 悪い10%: '+cell.p10.toFixed(1)+'%</div>';
+      h+='<div class="nl">n='+cell.n+epTxt+'</div></div>';
+    }
+  }
+  h+='</div></div>';
+  return h;
+}
+
+function maeCellTxt(cl){
+  if(!cl)return'<span style="color:var(--text3)">—</span>';
+  return'<span class="hold-worse">'+cl.med.toFixed(1)+'%</span><div class="verdict" style="color:var(--text3)">悪10% '+cl.p10.toFixed(1)+'% / 最悪 '+cl.worst.toFixed(1)+'%</div>';
+}
+function buildMAE(d,c,days){
+  var b=c.mom_bucket,mb=d.mae[b];
+  if(!mb)return'';
+  var h='<h2>最大下振れ（持ち続けた場合、期間内にどこまで掘れるか）</h2>';
+  h+='<p class="note">現Lv「'+b+'」の日に売らなかった場合、その後N日以内につけた最安値までの下落率。中央値／悪い10%シナリオ／過去最悪。</p>';
+  h+='<div class="hvswrap"><table class="hvstbl"><tr><th>「'+b+'」で保有継続</th>';
+  for(var i=0;i<days.length;i++)h+='<th>+'+days[i]+'日以内</th>';
+  h+='</tr><tr><td>最安値までの下落率（中央値）</td>';
+  for(var i=0;i<days.length;i++)h+='<td>'+maeCellTxt(mb[String(days[i])])+'</td>';
+  h+='</tr>';
+  if(c.holding_qty>0){
+    h+='<tr><td>あなたの'+c.holding_qty+'株なら（中央値ベース）</td>';
+    for(var i=0;i<days.length;i++){
+      var cl=mb[String(days[i])];
+      if(!cl){h+='<td>—</td>';continue;}
+      var loss=c.price*(cl.med/100)*c.holding_qty;
+      var lossW=c.price*(cl.p10/100)*c.holding_qty;
+      h+='<td><span class="pnl-big pnl-neg">-$'+Math.abs(loss).toFixed(0)+'</span><div class="verdict" style="color:var(--text3)">悪10%: -$'+Math.abs(lossW).toFixed(0)+'</div></td>';
+    }
+    h+='</tr>';
+  }
+  h+='</table></div>';
+  return h;
+}
+
+function buildHoldComparison(c,m,days){
+  if(!c.holding_qty||c.holding_qty<=0)return'';
+  var qty=c.holding_qty,avg=c.holding_avg,price=c.price;
+  var sellNowPnl=(price-avg)*qty;
+  var b=c.mom_bucket;
+  var h='<h2>今売る vs 持ち続ける</h2>';
+  h+='<p class="note">'+qty+'株 取得単価$'+avg+' / 現在$'+price+' / 現Lv: <span class="bnow '+BC[b]+'">'+b+'</span>（過去の同状態からの統計）</p>';
+  h+='<div class="hvswrap"><table class="hvstbl">';
+  h+='<tr><th></th><th class="sell-now-col">今すぐ売る</th>';
+  for(var di=0;di<days.length;di++)h+='<th>+'+days[di]+'日後</th>';
+  h+='</tr>';
+  var snSign=sellNowPnl>=0?'+':'-',snClass=sellNowPnl>=0?'pnl-pos':'pnl-neg';
+  h+='<tr><td>期待損益（平均シナリオ）</td>';
+  h+='<td class="sell-now-col"><span class="pnl-big '+snClass+'">'+snSign+'$'+Math.abs(sellNowPnl).toFixed(0)+'</span><div class="verdict" style="color:var(--gold)">確定</div></td>';
+  var bestPnl=-Infinity,bestD=null;
+  for(var di=0;di<days.length;di++){
+    var cell=m.cells[days[di]+'_'+b];
+    if(!cell){h+='<td style="color:var(--text3)">—</td>';continue;}
+    var ep=price*(1+cell.avg_ret/100),expPnl=(ep-avg)*qty,diff=expPnl-sellNowPnl;
+    if(expPnl>bestPnl){bestPnl=expPnl;bestD=days[di];}
+    var pcls=expPnl>=0?'pnl-pos':'pnl-neg',psg=expPnl>=0?'+':'-';
+    var diffCls=diff>=50?'hold-better':diff<-50?'hold-worse':'hold-neutral';
+    h+='<td><span class="pnl-big '+pcls+'">'+psg+'$'+Math.abs(expPnl).toFixed(0)+'</span><div class="verdict '+diffCls+'">'+(diff>=0?'▲':'▼')+'$'+Math.abs(diff).toFixed(0)+'</div></td>';
+  }
+  h+='</tr><tr><td>悪い10%シナリオの損益</td><td class="sell-now-col" style="color:var(--text3);font-size:12px">—</td>';
+  for(var di=0;di<days.length;di++){
+    var cell=m.cells[days[di]+'_'+b];
+    if(!cell){h+='<td>—</td>';continue;}
+    var epw=price*(1+cell.p10/100),pnlW=(epw-avg)*qty;
+    var wcls=pnlW>=0?'pnl-pos':'pnl-neg';
+    h+='<td><span class="'+wcls+'">'+(pnlW>=0?'+':'-')+'$'+Math.abs(pnlW).toFixed(0)+'</span><div class="verdict" style="color:var(--text3)">p10: '+cell.p10.toFixed(1)+'%</div></td>';
+  }
+  h+='</tr><tr><td>下落確率</td><td class="sell-now-col" style="color:var(--text3);font-size:12px">—</td>';
+  for(var di=0;di<days.length;di++){
+    var cell=m.cells[days[di]+'_'+b];
+    if(!cell){h+='<td>—</td>';continue;}
+    var lr=cell.loss_rate,lcls=lr>=60?'hold-worse':lr<=40?'hold-better':'hold-neutral';
+    h+='<td class="'+lcls+'">'+lr.toFixed(0)+'%<div class="verdict" style="color:var(--text3)">n='+cell.n+'</div></td>';
+  }
+  h+='</tr></table></div>';
+  var vClass='verdict-neutral',vText='';
+  if(bestD!=null&&bestPnl<sellNowPnl-50){
+    vClass='verdict-sell';
+    vText='📉 現Lv「'+b+'」の過去統計では、持ち続けるより<strong>今売る方が期待値が高い</strong>（最良の保有期間でも ▼$'+Math.abs(bestPnl-sellNowPnl).toFixed(0)+'）。';
+  }else if(bestD!=null&&bestPnl>sellNowPnl+50){
+    vClass='verdict-hold';
+    vText='📊 統計的には <strong>+'+bestD+'日</strong> 持ち続けた場合の期待損益が最も高い（▲$'+Math.abs(bestPnl-sellNowPnl).toFixed(0)+'）。ただし悪い10%シナリオの下振れも確認のこと。';
+  }else{
+    vText='📊 今売る場合と持ち続ける場合の期待値は拮抗。下落スコアの変化を毎日確認のこと。';
+  }
+  h+='<div class="verdict-box '+vClass+'">'+vText+'</div>';
+  return h;
+}
+
+function trCellTxt(cl){
+  if(!cl)return'<span style="color:var(--text3)">—</span>';
+  var cls=cl.avg_ret<=-5?'hold-worse':cl.avg_ret>=5?'hold-better':'hold-neutral';
+  return'<span class="'+cls+'">'+sgn(cl.avg_ret)+cl.avg_ret.toFixed(1)+'%</span><div class="verdict" style="color:var(--text3)">下落率'+cl.loss_rate.toFixed(0)+'% n='+cl.n+'</div>';
+}
+function buildTransitions(d,days){
+  var tr=d.transitions;
+  if(!tr)return'';
+  var keys=['3→2','2→1','1→0'];
+  var any=false;
+  for(var i=0;i<keys.length;i++)if(tr[keys[i]]&&tr[keys[i]].n_events>0)any=true;
+  if(!any)return'';
+  var h='<h2>シグナル転落の瞬間 <span style="font-size:11px;color:var(--text3);font-weight:400">買いシグナルのMA本数が減った日からのその後</span></h2>';
+  h+='<div class="hvswrap"><table class="hvstbl"><tr><th>転落イベント</th>';
+  for(var di=0;di<days.length;di++)h+='<th>+'+days[di]+'日</th>';
+  h+='</tr>';
+  for(var i=0;i<keys.length;i++){
+    var t=tr[keys[i]];
+    if(!t||t.n_events===0)continue;
+    h+='<tr><td>'+t.label+'（'+t.n_events+'回）</td>';
+    for(var di=0;di<days.length;di++)h+='<td>'+trCellTxt(t.cells[String(days[di])])+'</td>';
+    h+='</tr>';
+  }
+  h+='</table></div>';
+  h+='<p class="note">「3/3健全から2/3警戒に落ちた瞬間に売っていたら」を検証する統計。平均がマイナスなら転落日は売りシグナルとして機能していた。</p>';
+  return h;
+}
+
+function buildEpisodes(d,days){
+  var eps=d.episodes;
+  if(!eps)return'';
+  var rows=[];
+  for(var bi=0;bi<BL.length;bi++){
+    var b=BL[bi],e=eps[b];
+    if(!e||b==='Lv0 平穏')continue;
+    rows.push([b,e]);
+  }
+  if(rows.length===0)return'';
+  var h='<h2>下落エピソード統計 <span style="font-size:11px;color:var(--text3);font-weight:400">同一Lvの連続区間を1回と数えた統計</span></h2>';
+  h+='<table class="dtbl"><tr><th>Lv</th><th>回数</th><th>平均継続</th><th>最長</th><th>区間中の深さ(中央値)</th><th>最悪</th><th>起点+20日</th></tr>';
+  for(var i=0;i<rows.length;i++){
+    var b=rows[i][0],e=rows[i][1];
+    var c20=e.entry['20'];
+    var c20txt=c20?('<span class="'+(c20.avg_ret>=0?'pnl-pos':'pnl-neg')+'">'+sgn(c20.avg_ret)+c20.avg_ret.toFixed(1)+'%（下落率'+c20.loss_rate.toFixed(0)+'%）</span>'):'—';
+    h+='<tr><td><span class="bnow '+BC[b]+'">'+b+'</span></td><td>'+e.n_ep+'回</td><td>'+e.dur_avg+'日</td><td>'+e.dur_max+'日</td><td class="hold-worse">'+e.depth_med+'%</td><td class="hold-worse">'+e.depth_worst+'%</td><td>'+c20txt+'</td></tr>';
+  }
+  h+='</table>';
+  h+='<p class="note">深さ＝エピソード開始日の終値から区間中の最安値までの下落率。エピソード数が3回未満のLvは参考値。</p>';
+  return h;
+}
+
+function buildFMP(fmp){
+  if(!fmp)return'';
+  var h='',cards='';
+  if(fmp.insider_trades&&fmp.insider_trades.length>0){
+    cards+='<div class="fmp-card"><h3>インサイダー Form 4</h3>';
+    for(var i=0;i<fmp.insider_trades.length;i++){
+      var tr=fmp.insider_trades[i];
+      var isSale=tr.type==='S-Sale';
+      var col=isSale?'#FA7560':'#6BD8A6';
+      var sym=isSale?'▼ 売却':'▲ 購入';
+      var sh=tr.shares>=1000?(tr.shares/1000).toFixed(1)+'k':tr.shares;
+      cards+='<div class="form4-row"><div class="form4-meta"><span style="color:var(--text2)">'+tr.date+'</span><span style="color:'+col+'">'+sym+' '+sh+'株 @$'+tr.price+'</span></div><div class="form4-who">'+tr.role+' · '+tr.name.split(/\s+/).slice(-1)[0]+'</div></div>';
+    }
+    cards+='</div>';
+  }
+  if(fmp.insider&&fmp.insider.current){
+    var ins=fmp.insider.current;
+    cards+='<div class="fmp-card"><h3>インサイダー売買比率</h3>';
+    cards+='<div style="text-align:center;padding:6px 0 10px"><div style="font-size:10px;color:var(--text3)">買い/売り ('+ins.year+'Q'+ins.quarter+')</div>';
+    cards+='<div style="font-size:26px;font-family:Georgia,serif;color:'+(ins.ratio>=1?'#6BD8A6':'#FA7560')+'">'+ins.ratio.toFixed(2)+'</div></div>';
+    cards+='<div style="font-size:11px;color:var(--text2);display:flex;justify-content:space-between"><span>購入 '+ins.purchases+'件</span><span style="color:'+(ins.sales>5?'#FA7560':'inherit')+'">売却 '+ins.sales+'件</span></div>';
+    cards+='</div>';
+  }
+  if(fmp.news&&fmp.news.length>0){
+    cards+='<div class="fmp-card"><h3>最新ニュース</h3>';
+    for(var ni=0;ni<fmp.news.length;ni++){
+      var nx=fmp.news[ni];
+      cards+='<div class="news-item"><a href="'+nx.url+'" target="_blank">'+nx.title+'</a><div class="nsrc">'+nx.publisher+' · '+nx.date+'</div></div>';
+    }
+    cards+='</div>';
+  }
+  if(!cards)return'';
+  h='<h2>外部シグナル <span style="font-size:11px;color:var(--text3);font-weight:400">インサイダー売却の集中は出口サインになり得る</span></h2><div class="fmp-grid">'+cards+'</div>';
+  return h;
+}
+
+function showTlTip(el){
+  var tip=document.getElementById('tl-tip');
+  var rect=el.getBoundingClientRect();
+  var pctNum=parseFloat(el.getAttribute('data-pct'));
+  var pctColor=pctNum>0?'#6BD8A6':pctNum<0?'#FA7560':'var(--text2)';
+  var bucket=el.getAttribute('data-bucket');
+  var h='<div style="color:var(--text3);font-size:10px;margin-bottom:5px">'+el.getAttribute('data-date')+'&nbsp;&middot;&nbsp;'+el.getAttribute('data-ago')+'日前</div>';
+  h+='<div style="margin-bottom:6px"><span class="bnow '+BC[bucket]+'">'+bucket+'</span></div>';
+  h+='<div style="font-family:Georgia,serif;font-size:15px">$'+parseFloat(el.getAttribute('data-price')).toFixed(2)+'</div>';
+  h+='<div style="font-size:11px;color:'+pctColor+';margin-top:2px">現在比 '+(pctNum>0?'+':'')+pctNum+'%</div>';
+  tip.innerHTML=h;
+  tip.style.display='block';
+  var tipH=tip.offsetHeight||90,tipW=tip.offsetWidth||170;
+  var x=rect.left+rect.width/2-tipW/2,y=rect.top-tipH-10;
+  if(y<4)y=rect.bottom+8;
+  if(x<4)x=4;
+  if(x+tipW>window.innerWidth-4)x=window.innerWidth-tipW-4;
+  tip.style.left=x+'px';tip.style.top=y+'px';
+}
+function hideTlTip(){document.getElementById('tl-tip').style.display='none';}
+
+function render(t){
+  currentTicker=t;
+  var d=DATA[t],c=d.current,m=d.matrix,days=RAW.days;
+  var h='<div class="state">';
+  h+='<div><div class="lbl">Price</div><div class="val">$'+c.price+'</div><div class="sub">'+t+' / '+c.date+'</div></div>';
+  h+='<div><div class="lbl">下落Lv</div><div class="val" style="font-size:14px;padding-top:6px"><span class="bnow '+BC[c.mom_bucket]+'">'+c.mom_bucket+'</span></div><div class="sub">'+(BD[c.mom_bucket]||'')+' / 継続'+d.current_streak+'日</div></div>';
+  h+='<div><div class="lbl">5日騰落</div><div class="val" style="color:'+(c.ret5<0?'#FA7560':'#6BD8A6')+'">'+sgn(c.ret5)+c.ret5+'%</div><div class="sub">下落速度</div></div>';
+  h+='<div><div class="lbl">60日高値比</div><div class="val" style="color:'+(c.dd60<=-7?'#FA7560':'var(--text)')+'">'+c.dd60+'%</div><div class="sub">ドローダウン</div></div>';
+  h+='<div><div class="lbl">RSI</div><div class="val">'+c.rsi+'</div><div class="sub">'+(c.rsi>=70?'過熱':c.rsi<=30?'売られすぎ':'中立')+'</div></div>';
+  if(c.holding_pnl_pct!=null)h+='<div><div class="lbl">含み損益</div><div class="val" style="color:'+(c.holding_pnl_pct<0?'#FA7560':'#6BD8A6')+'">'+sgn(c.holding_pnl_pct)+c.holding_pnl_pct+'%</div><div class="sub">'+c.holding_qty+'株@$'+c.holding_avg+'</div></div>';
+  h+='</div>';
+  h+=buildGauge(c);
+  var st=d.sector_today;
+  if(st&&st.total>=2&&st.down/st.total>=0.75){
+    h+='<div style="font-size:12px;margin-bottom:16px;padding:10px 14px;background:rgba(229,90,71,.06);border:1px solid rgba(229,90,71,.2);border-radius:4px">⚠ 本日 '+st.down+'/'+st.total+'銘柄下落（全面安）— 個別要因ではなくセクター/地合いの可能性</div>';
+  }
+  h+=buildMatrix(m,c,d.episodes_per_bucket,'売り期待値マトリックス（'+t+'）','各営業日を下落Lvで分類し、その日売らずにN日持ち続けた場合のリターンを全数集計。赤=持ち続けると平均的に損、緑=保有継続が有利。NOW=現在地。');
+  h+='<div class="legend"><span><span class="sw" style="background:linear-gradient(135deg,rgba(229,90,71,.5),rgba(229,90,71,.25))"></span>-20%↓</span><span><span class="sw" style="background:rgba(229,90,71,.2)"></span>-10〜-20%</span><span><span class="sw" style="background:rgba(229,90,71,.08)"></span>-3〜-10%</span><span><span class="sw" style="background:#1A1815"></span>±3%</span><span><span class="sw" style="background:rgba(79,186,138,.08)"></span>+3〜10%</span><span><span class="sw" style="background:rgba(79,186,138,.2)"></span>+10%↑</span></div>';
+  h+=buildMAE(d,c,days);
+  h+=buildHoldComparison(c,m,days);
+  h+=buildTransitions(d,days);
+  h+=buildEpisodes(d,days);
+  h+=buildMatrix(POOLED,null,null,'全'+POOLED.n_tickers+'銘柄合算マトリックス','個別銘柄ではLv3のサンプルが少ないため、全銘柄の営業日をプールした統計。傾向確認用。');
+  h+=buildFMP(d.fmp);
+  var hist=d.mom_history||[];
+  var tl='<div class="tlwrap">';
+  var curDate=new Date(c.date+'T12:00:00');
+  for(var hi=0;hi<hist.length;hi++){
+    var hx=hist[hi];
+    var daysAgo=Math.round((curDate-new Date(hx.date+'T12:00:00'))/(1000*60*60*24));
+    var priceDiff=((c.price-hx.price)/hx.price*100).toFixed(1);
+    tl+='<div class="tlday" style="background:'+(CLR[hx.bucket]||'#555')+'" data-date="'+hx.date+'" data-ago="'+daysAgo+'" data-price="'+hx.price+'" data-pct="'+priceDiff+'" data-bucket="'+hx.bucket+'" onmouseenter="showTlTip(this)" onmouseleave="hideTlTip()"></div>';
+  }
+  tl+='</div>';
+  var dstats=d.duration_stats||{};
+  var dtb='<table class="dtbl"><tr><th>Lv</th><th>平均継続</th><th>最長</th><th>発生回数</th></tr>';
+  for(var bi=0;bi<BL.length;bi++){var bx=BL[bi],sx=dstats[bx];if(sx)dtb+='<tr><td><span class="bnow '+BC[bx]+'">'+bx+'</span></td><td>'+sx.avg+'日</td><td>'+sx.max+'日</td><td>'+sx.count+'回</td></tr>';}
+  dtb+='</table>';
+  h+='<h2>下落Lv推移タイムライン</h2><p class="note">左=過去、右=直近。現在の「'+c.mom_bucket+'」は継続 <strong style="color:var(--accent)">'+d.current_streak+'日</strong> 目。</p>'+tl+dtb;
+  document.getElementById('content').innerHTML=h;
+}
+function showTicker(t){document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('active',b.textContent===t)});render(t)}
+render('__FIRST__');
+</script></body></html>
