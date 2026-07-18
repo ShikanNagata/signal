@@ -72,7 +72,10 @@ TRADE_RULES = """あなたは私の専属トレードアシスタントです。
 - avg_ret_pct: N日後の平均リターン(%) / loss_rate_pct: N日後に値下がりしていた確率(%)
 - p10_pct: 悪い方から10%のシナリオ（10回に1回はこれ以下を食らう）
 - mae_med_pct / mae_p10_pct: N日間の途中でつけた最大の下振れ（中央値／悪い10%）
-- position_value_usd: 現在の保有評価額 / p10_loss_usd_10d: 悪い10%シナリオ（10日）での想定損失額（ドル）
+- 各期間の avg_pnl_usd / p10_loss_usd: 保有評価額に換算した平均損益・悪い10%シナリオの損失（ドル）
+- holding の value_usd=現在の評価額 / pnl_usd=取得来損益＄ / day_change_usd=前日比＄
+- トップレベルの usdjpy: ドル円レート。円換算はこれを掛けた概算を使うこと（自分で為替を推測しない）
+- 金額に言及するときはドルと円の両方を書くこと（例: -$437（約-6.6万円））
 
 保有中の銘柄には必ず「いま売らずに持ち続けた場合の見通し」を1〜2行入れること。
 例:「10日持つと平均+2.7%だが43%の確率で下落。悪い10%なら-9.3%（約$230の含み減）。しかも途中では中央値でも-11%掘るので、そこで狼狽売りしない覚悟が必要」
@@ -114,6 +117,29 @@ def update_csvs(cfg):
             print(f"  ✓ {t}: {len(df)}日分更新 (〜{df['Date'].max().date()})")
         except Exception as e:
             print(f"  ⚠ {t}: 取得失敗 ({e}) → 既存CSVを使用")
+
+
+def fetch_usdjpy():
+    """ドル円レート取得（失敗したらNone＝円換算なしで続行）"""
+    try:
+        import yfinance as yf
+        h = yf.Ticker("USDJPY=X").history(period="5d")
+        rate = round(float(h["Close"].iloc[-1]), 2)
+        print(f"  ✓ USD/JPY = {rate}")
+        return rate
+    except Exception as e:
+        print(f"  ⚠ ドル円取得失敗 ({e}) → 円換算なしで続行")
+        return None
+
+
+def prev_close(ticker):
+    """CSVの最後から2行目の終値（前日比計算用）"""
+    try:
+        with open(os.path.join("data", f"{ticker}.csv"), encoding="utf-8") as f:
+            rows = f.read().strip().splitlines()
+        return float(rows[-2].split(",")[4])
+    except Exception:
+        return None
 
 
 # ===================== 2-3. 買い/売りマトリックス生成 =====================
@@ -159,13 +185,13 @@ def publish(today):
 
 # ===================== 5. Gemini用サマリーJSON =====================
 
-def build_summary(today):
+def build_summary(today, usdjpy=None):
     with open(os.path.join("results", f"matrix_{today}.json"), encoding="utf-8") as f:
         buy = json.load(f)
     with open(os.path.join("sell", "results", f"exit_{today}.json"), encoding="utf-8") as f:
         sell = json.load(f)["tickers"]
 
-    summary = {"date": today, "tickers": []}
+    summary = {"date": today, "usdjpy": usdjpy, "tickers": []}
     for t, b in buy.items():
         cur = b["current"]
         trig = b.get("trigger_analysis", {}).get("today", {})
@@ -194,10 +220,18 @@ def build_summary(today):
                 o["mae_med_pct"] = m["med"]
                 o["mae_p10_pct"] = m["p10"]
             outlook[f"{d}d"] = o
-        if holding and outlook.get("10d"):
-            value = round(holding["qty"] * cur["price"])
-            outlook["position_value_usd"] = value
-            outlook["p10_loss_usd_10d"] = round(value * outlook["10d"]["p10_pct"] / 100)
+        if holding:
+            value = holding["qty"] * cur["price"]
+            cost = holding["qty"] * holding["avg_cost_usd"]
+            holding["value_usd"] = round(value)
+            holding["pnl_usd"] = round(value - cost)
+            pc = prev_close(t)
+            if pc:
+                holding["day_change_usd"] = round((cur["price"] - pc) * holding["qty"])
+                holding["day_change_pct"] = round((cur["price"] / pc - 1) * 100, 2)
+            for o in outlook.values():
+                o["avg_pnl_usd"] = round(value * o["avg_ret_pct"] / 100)
+                o["p10_loss_usd"] = round(value * o["p10_pct"] / 100)
         summary["tickers"].append({
             "ticker": t,
             "price": cur["price"],
@@ -223,6 +257,44 @@ def build_summary(today):
             "sector_breadth_today": b.get("sector_today"),
         })
     return summary
+
+
+def holdings_section(summary):
+    """Pythonで確定計算した保有状況（Geminiに依存しない正確な数字のセクション）"""
+    rate = summary.get("usdjpy")
+
+    def jpy(usd):
+        if rate is None:
+            return ""
+        v = usd * rate
+        return f"（約{v/10000:+,.1f}万円）" if abs(v) >= 10000 else f"（約{v:+,.0f}円）"
+
+    lines = ["【保有状況】" + (f"USD/JPY={rate}" if rate else "（円換算レート取得失敗のためドルのみ）")]
+    tot_v = tot_p = 0.0
+    for tk in summary["tickers"]:
+        h = tk.get("holding")
+        if not h:
+            continue
+        v, p = h["value_usd"], h["pnl_usd"]
+        tot_v += v
+        tot_p += p
+        dc = h.get("day_change_usd")
+        day = f" / 前日比 {dc:+,}$" if dc is not None else ""
+        lines.append(f"■ {tk['ticker']}: {h['qty']}株 × ${tk['price']} = ${v:,}{jpy(v).replace('+','')}")
+        lines.append(f"   取得来 {p:+,}$（{h['pnl_pct']:+.1f}%）{jpy(p)}{day}")
+        ol = tk.get("hold_outlook_current_bucket") or {}
+        for key, label in (("10d", "10日後"), ("20d", "20日後")):
+            o = ol.get(key)
+            if o and "avg_pnl_usd" in o:
+                lines.append(
+                    f"   売らずに{label}: 平均 {o['avg_pnl_usd']:+,}$ {jpy(o['avg_pnl_usd'])}"
+                    f" / 悪い10%だと {o['p10_loss_usd']:+,}$ {jpy(o['p10_loss_usd'])}"
+                    f"（下落確率{o['loss_rate_pct']:.0f}%）")
+    if tot_v:
+        lines.append("―" * 20)
+        lines.append(f"合計評価額 ${tot_v:,.0f}{jpy(tot_v).replace('+','')} / 取得来 {tot_p:+,.0f}$ {jpy(tot_p)}")
+    lines.append("※過去統計に基づく参考値。将来を保証するものではありません")
+    return "\n".join(lines)
 
 
 # ===================== 6. Gemini API =====================
@@ -284,7 +356,7 @@ def rule_based_report(summary):
         ol = tk.get("hold_outlook_current_bucket") or {}
         d10 = ol.get("10d")
         if held and d10:
-            usd = f"（約${abs(ol['p10_loss_usd_10d']):,}の含み減）" if ol.get("p10_loss_usd_10d") else ""
+            usd = f"（約${abs(d10['p10_loss_usd']):,}の含み減）" if d10.get("p10_loss_usd") else ""
             lines.append(f"   売らずに10日持った過去統計: 平均{d10['avg_ret_pct']:+.1f}% / "
                          f"下落確率{d10['loss_rate_pct']:.0f}% / 悪い10%で{d10['p10_pct']:+.1f}%{usd}")
     return "\n".join(lines)
@@ -338,7 +410,8 @@ def main():
     publish(today)
 
     print("\n===== 5/6 AIレポート生成 =====")
-    summary = build_summary(today)
+    usdjpy = fetch_usdjpy()
+    summary = build_summary(today, usdjpy)
     report = None if args.skip_gemini else call_gemini(summary)
     if report is None:
         report = rule_based_report(summary)
@@ -352,6 +425,8 @@ def main():
     body = (f"本日のトレードアシスタントレポート（{today}）\n"
             f"買いダッシュボード: {SITE_URL}\n"
             f"売りダッシュボード: {SITE_URL}exit/\n"
+            + "=" * 40 + "\n"
+            + holdings_section(summary) + "\n"
             + "=" * 40 + "\n\n" + report + "\n\n" + "=" * 40
             + "\n\n【本日の生データ】\n"
             + json.dumps(summary, ensure_ascii=False, indent=1))
