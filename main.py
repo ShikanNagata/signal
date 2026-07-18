@@ -79,6 +79,8 @@ TRADE_RULES = """あなたは私の専属トレードアシスタントです。
   （avg_ret_pct=平均リターン%, win_rate_pct=勝率%, worst_pct=最悪ケース%）。買い判断に言及する際の根拠に使う
 - p_down10_pct / p_down20_pct: 売らずにN日持って-10%超／-20%超の下落になった過去頻度(%)。
   この確率が高い保有銘柄は売り警戒を強めにコメントする
+- regime: 地合いフィルター（QQQとBTCの200日線）。above=falseの銘柄があれば地合い悪化。
+  その場合は「バックテスト統計は上昇相場データ製で信用度低下中」と必ず一言警告し、買い系コメントは控えめにする
 - signal_lines: 防衛線（MA5/MA50/MA200。終値がこれを割るとシグナル本数が減る判定線）。
   broken=true は割れ済み。「防衛線を割った分だけ1/3減」の判断はこのラインを根拠に、具体的な価格で言うこと
   （例:「MA50=$205.30を割れ済みなので、ルール上1/3減の対象」）
@@ -449,6 +451,83 @@ def todo_section(actions):
     return "\n".join(lines)
 
 
+def fetch_regime():
+    """地合いフィルター: QQQとBTCが200日線の上か下か"""
+    try:
+        import yfinance as yf
+    except ImportError:
+        return None
+    out = {}
+    for sym, label in (("QQQ", "QQQ"), ("BTC-USD", "BTC")):
+        try:
+            h = yf.Ticker(sym).history(period="300d")["Close"]
+            ma = float(h.rolling(200).mean().iloc[-1])
+            px = float(h.iloc[-1])
+            out[label] = {"price": round(px, 2), "ma200": round(ma, 2),
+                          "above": px >= ma,
+                          "dist_pct": round((px / ma - 1) * 100, 1)}
+        except Exception as e:
+            print(f"  ⚠ 地合い取得失敗 {sym}: {e}")
+    return out or None
+
+
+def regime_section(regime):
+    if not regime:
+        return ""
+    parts = []
+    warn = False
+    for k in ("QQQ", "BTC"):
+        d = regime.get(k)
+        if not d:
+            continue
+        state = "上" if d["above"] else "下"
+        parts.append(f"{k}: 200日線の{state}（{d['dist_pct']:+.1f}%）")
+        if not d["above"]:
+            warn = True
+    lines = ["◆地合い: " + " / ".join(parts)]
+    if warn:
+        lines.append("※地合い悪化中。バックテスト統計は上昇相場のデータ製のため、"
+                     "「押し目は買い」系の数字の信用度は低下中。防衛線を優先")
+    return "\n".join(lines)
+
+
+PERF_PATH = os.path.join("docs", "perf.json")
+
+
+def update_perf(today, summary):
+    """ルール運用（実際の保有推移＋売買現金）vs 何もしない（開始時点の保有を放置）の並走記録。
+    約定価格は取れないため、保有変化は当日終値で近似する"""
+    prices = {tk["ticker"]: tk["price"] for tk in summary["tickers"]}
+    qtys = {tk["ticker"]: (tk["holding"]["qty"] if tk["holding"] else 0)
+            for tk in summary["tickers"]}
+    try:
+        with open(PERF_PATH, encoding="utf-8") as f:
+            perf = json.load(f)
+    except Exception:
+        perf = {"start_date": today, "baseline": qtys, "cash": 0.0,
+                "last_holdings": qtys, "history": []}
+    for t, q in qtys.items():
+        old = perf["last_holdings"].get(t, 0)
+        if q != old and t in prices:
+            perf["cash"] += (old - q) * prices[t]
+    perf["last_holdings"] = qtys
+    actual = sum(qtys[t] * prices[t] for t in qtys) + perf["cash"]
+    hold = sum(q * prices[t] for t, q in perf["baseline"].items() if t in prices)
+    entry = {"date": today, "actual": round(actual, 2), "hold": round(hold, 2)}
+    perf["history"] = [h for h in perf["history"] if h["date"] != today][-499:] + [entry]
+    os.makedirs("docs", exist_ok=True)
+    with open(PERF_PATH, "w", encoding="utf-8") as f:
+        json.dump(perf, f, ensure_ascii=False, indent=1)
+    base = perf["history"][0]
+    if base["hold"] <= 0 or base["actual"] <= 0:
+        return ""
+    a_pct = (actual / base["actual"] - 1) * 100
+    h_pct = (hold / base["hold"] - 1) * 100
+    return (f"◆ルール運用 vs 何もしない（{perf['start_date']}開始・{len(perf['history'])}営業日）\n"
+            f"・実際: ${actual:,.0f}（{a_pct:+.1f}%） / 持ちっぱなし: {h_pct:+.1f}%"
+            f" → ルールの寄与 {a_pct - h_pct:+.1f}%pt")
+
+
 def stats_memo(summary):
     """ルール外だが統計的に注目の銘柄（買い妙味・大幅下落リスク）を通知"""
     lines = []
@@ -576,6 +655,7 @@ def main():
     print("\n===== 5/6 AIレポート生成 =====")
     usdjpy = fetch_usdjpy()
     summary = build_summary(today, usdjpy)
+    summary["regime"] = None if args.skip_fetch else fetch_regime()
     actions = {tk["ticker"]: action_for(tk) for tk in summary["tickers"]}
     prev = load_state()
     changes = changes_section(today, summary, prev)
@@ -594,12 +674,16 @@ def main():
     subject = (f"【シグナル】{md} | 売り: {'/'.join(sells) if sells else 'なし'}"
                f" | 買い: {'/'.join(buy_ts) if buy_ts else 'なし'}")
     memo = stats_memo(summary)
+    regime_txt = regime_section(summary.get("regime"))
+    perf_txt = update_perf(today, summary)
     body = (f"シグナルレポート（{today}）\n\n"
             + todo_section(actions) + "\n\n"
+            + (regime_txt + "\n\n" if regime_txt else "")
             + (memo + "\n\n" if memo else "")
             + changes + "\n\n"
             + "◆AIコメント\n" + report + "\n\n"
             + holdings_section(summary, actions) + "\n\n"
+            + (perf_txt + "\n\n" if perf_txt else "")
             + f"買いダッシュボード: {SITE_URL}\n売りダッシュボード: {SITE_URL}exit/")
 
     print("\n----- メール本文 -----\n" + body[:2500] + "\n------------------------")
