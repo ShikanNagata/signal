@@ -1,7 +1,7 @@
 {
   "comment": "===== 設定ファイル：ここを編集すれば対象銘柄や期間を変えられます =====",
 
-  "tickers": ["WULF", "AMD", "MRVL", "CRCL", "NBIS", "TXG"],
+  "tickers": ["WULF", "AMD", "MRVL", "IONQ", "CRCL", "NBIS", "TXG"],
   "comment_tickers": "分析したい銘柄をここに並べる。増減自由。例: [\"WULF\",\"AMD\",\"MRVL\",\"IONQ\",\"NBIS\"]",
 
   "history_period": "550d",
@@ -25,10 +25,11 @@
   "comment_output": "結果JSONとHTMLを保存するサブフォルダ名。日付つきで保存される",
 
   "my_holdings": {
-    "comment": "（任意）自分の保有。2026/7/18に楽天証券の取引履歴CSVから移動平均法で再計算（手数料込み）",
-    "WULF": {"qty": 111, "avg_cost_usd": 14.88},
+    "comment": "（任意）自分の保有。2026/7/25に楽天証券の取引履歴CSVから移動平均法で再計算（手数料込み）",
+    "WULF": {"qty": 391, "avg_cost_usd": 18.78},
     "AMD":  {"qty": 17,  "avg_cost_usd": 275.92},
     "MRVL": {"qty": 16,  "avg_cost_usd": 127.09},
+    "IONQ": {"qty": 50,  "avg_cost_usd": 42.58},
     "TXG":  {"qty": 37,  "avg_cost_usd": 43.38},
     "CRCL": {"qty": 0,   "avg_cost_usd": 0},
     "NBIS": {"qty": 0,   "avg_cost_usd": 0}
