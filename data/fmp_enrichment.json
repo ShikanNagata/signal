@@ -1,4 +1,9 @@
 {
+  "_meta": {
+    "lastUpdated": "2026-07-30",
+    "newsSource": "web search (FMP news endpoint unavailable on current plan)",
+    "insiderInstitutionalAsOf": "2026-07-18 (FMP; not refreshed - insiderTrades/form13F endpoints require higher FMP plan)"
+  },
   "WULF": {
     "insider": {
       "current": {
@@ -35,22 +40,22 @@
     },
     "news": [
       {
-        "title": "Bitcoin Miners Cash In as AI Hits a Power Bottleneck",
-        "url": "https://www.etftrends.com/coinshares-content-hub/bitcoin-miners-cash-in-as-ai-hits-power-bottleneck/",
-        "date": "2026-07-15 15:28:53",
-        "publisher": "ETF Trends"
+        "title": "WULF Stock Gains Momentum On Anthropic AI Data Center Deal",
+        "url": "https://timothysykes.com/news/terawulf-inc-wulf-news-2026_07_21/",
+        "date": "2026-07-21 00:00:00",
+        "publisher": "Timothy Sykes"
       },
       {
-        "title": "TeraWulf Stock Panics Over New York's Data-Center Moratorium, but Wall Street Sees a Steal",
-        "url": "https://www.barrons.com/articles/terawulf-stock-ny-data-center-moratorium-2ba77955",
-        "date": "2026-07-15 12:57:00",
-        "publisher": "Barrons"
+        "title": "WULF Stock Jumps As Anthropic AI Megadeal Rewrites The Story",
+        "url": "https://www.timothysykes.com/news/terawulf-inc-wulf-news-2026_07_15/",
+        "date": "2026-07-15 00:00:00",
+        "publisher": "Timothy Sykes"
       },
       {
-        "title": "Why These Cheap Artificial Intelligence (AI) Stocks Are Still a Buy Despite the Selloff",
-        "url": "https://investorplace.com/hypergrowthinvesting/2026/07/why-these-cheap-artificial-intelligence-ai-stocks-are-still-a-buy-despite-the-selloff/",
-        "date": "2026-07-14 00:00:00",
-        "publisher": "Investor Place"
+        "title": "Stock Market Today, July 6: TeraWulf Gains on $19 Billion Anthropic AI Lease Deal",
+        "url": "https://www.fool.com/coverage/stock-market-today/2026/07/06/stock-market-today-july-6-terawulf-gains-on-usd19-billion-anthropic-ai-lease-deal/",
+        "date": "2026-07-06 00:00:00",
+        "publisher": "The Motley Fool"
       }
     ]
   },
@@ -90,22 +95,22 @@
     },
     "news": [
       {
-        "title": "What Do SpaceX, AMD, and Palantir Have in Common?",
-        "url": "https://www.fool.com/investing/2026/07/18/what-do-spacex-amd-and-palantir-have-in-common/",
-        "date": "2026-07-18 16:13:00",
-        "publisher": "The Motley Fool"
+        "title": "AMD Stock Forecast: AI Revenue Surges 38%, but Shares Break Below $460 Support",
+        "url": "https://www.fxleaders.com/news/2026/07/30/amd-stock-price-forecast-q2-earnings-july-2026/",
+        "date": "2026-07-30 00:00:00",
+        "publisher": "FX Leaders"
       },
       {
-        "title": "AMD vs. Arm vs. Intel: The Best Stock to Play the Rise of Agentic AI",
-        "url": "https://www.fool.com/investing/2026/07/18/amd-arm-intel-best-stock-play-rise-agentic-ai/",
-        "date": "2026-07-18 12:01:00",
-        "publisher": "The Motley Fool"
+        "title": "AMD Stock Down 17% From Peak - Can July 22 Advancing AI Save It?",
+        "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262037492-amd-stock-forecast-week-july-20-2026-advancing-ai-july-22-tradingkey",
+        "date": "2026-07-20 00:00:00",
+        "publisher": "TradingKey"
       },
       {
-        "title": "AMD: What I'm Watching Into The August 4 Earnings Print",
-        "url": "https://seekingalpha.com/article/4923243-amd-what-im-watching-into-the-august-4-earnings-print",
-        "date": "2026-07-18 10:07:15",
-        "publisher": "Seeking Alpha"
+        "title": "Why July Could Be a Big Month for AMD Stock Investors",
+        "url": "https://www.fool.com/investing/2026/07/04/why-july-could-be-a-big-month-for-amd-stock-invest/",
+        "date": "2026-07-04 00:00:00",
+        "publisher": "The Motley Fool"
       }
     ]
   },
@@ -145,22 +150,44 @@
     },
     "news": [
       {
-        "title": "The Tech Shakeout: Market Extremes & Gavin Baker's Bold Call",
-        "url": "https://www.zacks.com/commentary/2955724/the-tech-shakeout-market-extremes-gavin-baker-s-bold-call?cid=CS-STOCKNEWSAPI-FT-investment_ideas-2955724",
-        "date": "2026-07-17 13:01:15",
-        "publisher": "Zacks Investment Research"
+        "title": "How Far Could Marvell Technology Stock Actually Fall From Here?",
+        "url": "https://www.trefis.com/stock/mrvl/articles/609203/how-far-could-marvell-technology-stock-actually-fall-from-here/2026-07-28",
+        "date": "2026-07-28 00:00:00",
+        "publisher": "Trefis"
       },
       {
-        "title": "2 Stocks to Buy in the Chip Stock Sell-Off",
-        "url": "https://www.fool.com/investing/2026/07/17/2-stocks-to-buy-in-the-chip-stock-sell-off/",
-        "date": "2026-07-17 11:30:00",
-        "publisher": "Fool - Investing News"
-      },
-      {
-        "title": "3 Semiconductor Stocks to Buy Before AI Demand Explodes in July",
-        "url": "https://247wallst.com/investing/2026/07/17/3-semiconductor-stocks-to-buy-before-ai-demand-explodes-in-july/",
-        "date": "2026-07-17 09:00:08",
+        "title": "Wall Street is Bullish on Marvell. Here's Our Price Target.",
+        "url": "https://247wallst.com/investing/2026/07/22/wall-street-is-bullish-on-marvell-heres-our-price-target/",
+        "date": "2026-07-22 00:00:00",
         "publisher": "24/7 Wall Street"
+      },
+      {
+        "title": "Wall Street Is Warming to Marvell After Its XConn Acquisition. Here's The Price Target",
+        "url": "https://247wallst.com/investing/2026/07/19/wall-street-is-warming-to-marvell-after-its-xconn-acquisition-heres-the-price-target/",
+        "date": "2026-07-19 00:00:00",
+        "publisher": "24/7 Wall Street"
+      }
+    ]
+  },
+  "IONQ": {
+    "news": [
+      {
+        "title": "Why IonQ Stock Just Jumped",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/why-ionq-stock-just-jumped-161300315.html",
+        "date": "2026-07-27 00:00:00",
+        "publisher": "Yahoo Finance"
+      },
+      {
+        "title": "IonQ Stock Dives Below $40 on Pentagon Contract Loss Rumors, $30 Support Comes Into Focus",
+        "url": "https://www.fxleaders.com/news/2026/07/13/ionq-stock-dives-below-40-on-pentagon-contract-loss-rumors-30-support-comes-into-focus/",
+        "date": "2026-07-13 00:00:00",
+        "publisher": "FX Leaders"
+      },
+      {
+        "title": "How Far Can IonQ Stock Fall?",
+        "url": "https://www.trefis.com/stock/ionq/articles-v3/605676/how-far-can-ionq-stock-fall/2026-07-03",
+        "date": "2026-07-03 00:00:00",
+        "publisher": "Trefis"
       }
     ]
   },
@@ -200,22 +227,22 @@
     },
     "news": [
       {
-        "title": "Circle: Rival Stablecoin Launches Don't Make This A Zero-Sum Game",
-        "url": "https://seekingalpha.com/article/4923217-circle-rival-stablecoin-launches-doesnt-make-this-a-zero-sum-game",
-        "date": "2026-07-18 08:00:00",
-        "publisher": "Seeking Alpha"
+        "title": "Circle Internet Group (CRCL) Dips Amid Elevated Volatility Ahead of Earnings",
+        "url": "https://www.gurufocus.com/news/8987409/circle-internet-group-crcl-dips-amid-elevated-volatility-ahead-of-earnings",
+        "date": "2026-07-29 00:00:00",
+        "publisher": "GuruFocus"
       },
       {
-        "title": "Coinbase Just Joined a 140-Company Stablecoin Alliance. Here's What It Means for the Stock.",
-        "url": "https://www.fool.com/investing/2026/07/16/coinbase-just-joined-a-140-company-stablecoin-alli/",
-        "date": "2026-07-16 08:30:00",
-        "publisher": "Fool - Investing News"
+        "title": "CRCL Stock Jumps As Circle National Trust Wins OCC Green Light",
+        "url": "https://timothysykes.com/news/circle-internet-group-inc-crcl-news-2026_07_20-2/",
+        "date": "2026-07-20 00:00:00",
+        "publisher": "Timothy Sykes"
       },
       {
-        "title": "Coinbase, Circle stocks climb as analysts see Bitcoin-linked upside",
-        "url": "https://invezz.com/news/2026/07/15/coinbase-circle-stocks-climb-as-analysts-see-bitcoin-linked-upside/",
-        "date": "2026-07-15 15:29:06",
-        "publisher": "Invezz"
+        "title": "CRCL Stock Jumps As Circle Wins Key U.S. Bank Approval",
+        "url": "https://stockstotrade.com/news/circle-internet-group-inc-crcl-news-2026_07_20/",
+        "date": "2026-07-20 00:00:00",
+        "publisher": "StocksToTrade"
       }
     ]
   },
@@ -255,22 +282,22 @@
     },
     "news": [
       {
-        "title": "Jim Cramer Says Semiconductor Stocks Are “Going Down.” Buy These 2 Dividend Stocks Instead",
-        "url": "https://247wallst.com/investing/2026/07/17/jim-cramer-says-semiconductor-stocks-are-going-down-buy-these-2-dividend-stocks-instead/",
-        "date": "2026-07-17 17:17:32",
-        "publisher": "24/7 Wall Street"
+        "title": "Nebius (NASDAQ:NBIS) shares fall 10% amid concerns over funding needs and asset-light strategy",
+        "url": "https://ts2.tech/en/nebius-nasdaqnbis-shares-fall-10-amid-concerns-over-funding-needs-and-asset-light-strategy/",
+        "date": "2026-07-29 00:00:00",
+        "publisher": "TS2"
       },
       {
-        "title": "Nicholson: NBIS Best Positioned Against CRWD & APLD, Data Center Risks Remain",
-        "url": "https://www.youtube.com/watch?v=HvUFEEg6KS0",
-        "date": "2026-07-17 14:30:25",
-        "publisher": "Schwab Network"
+        "title": "Nvidia Delivers Fantastic News for Nebius Stock Investors!",
+        "url": "https://www.fool.com/investing/2026/07/23/nvidia-delivers-fantastic-news-for-nebius-stock-in/",
+        "date": "2026-07-23 00:00:00",
+        "publisher": "The Motley Fool"
       },
       {
-        "title": "Nebius Jumps 8% as $775M Debt Deal Eases the Dilution Fears That Sank NBIS Stock",
-        "url": "https://247wallst.com/investing/2026/07/17/nebius-jumps-8-as-775m-debt-deal-eases-the-dilution-fears-that-sank-nbis-stock/",
-        "date": "2026-07-17 13:45:49",
-        "publisher": "24/7 Wall Street"
+        "title": "Nebius Group NBIS Stock Jumps On $1B AI Cloud Deal",
+        "url": "https://timothysykes.com/news/nebius-group-nv-nbis-news-2026_07_21-3/",
+        "date": "2026-07-21 00:00:00",
+        "publisher": "Timothy Sykes"
       }
     ]
   },
@@ -310,22 +337,22 @@
     },
     "news": [
       {
-        "title": "Analyzing Mitesco (OTCMKTS:MITI) and 10x Genomics (NASDAQ:TXG)",
-        "url": "https://www.defenseworld.net/2026/07/17/analyzing-mitesco-otcmktsmiti-and-10x-genomics-nasdaqtxg.html",
-        "date": "2026-07-17 04:23:28",
-        "publisher": "Defense World"
+        "title": "10x Genomics (NASDAQ:TXG) Sets New 12-Month High - What's Next?",
+        "url": "https://www.themarketsdaily.com/2026/07/21/10x-genomics-nasdaqtxg-sets-new-12-month-high-whats-next.html",
+        "date": "2026-07-21 00:00:00",
+        "publisher": "Markets Daily"
       },
       {
-        "title": "10x Genomics to Report Second Quarter 2026 Financial Results on August 6, 2026",
-        "url": "https://www.prnewswire.com/news-releases/10x-genomics-to-report-second-quarter-2026-financial-results-on-august-6-2026-302826655.html",
-        "date": "2026-07-15 16:05:00",
-        "publisher": "PRNewsWire"
+        "title": "10x Genomics to Report Q2 2026 Results Aug. 6",
+        "url": "https://www.stocktitan.net/news/TXG/10x-genomics-to-report-second-quarter-2026-financial-results-on-s9xcymyfy3wy.html",
+        "date": "2026-07-15 00:00:00",
+        "publisher": "StockTitan"
       },
       {
-        "title": "10x Genomics, Cleveland Clinic Team Up on Bladder Cancer Diagnostics",
-        "url": "https://www.zacks.com/stock/news/2940223/10x-genomics-cleveland-clinic-team-up-on-bladder-cancer-diagnostics",
-        "date": "2026-06-19 11:36:06",
-        "publisher": "Zacks Investment Research"
+        "title": "TXG Stock Rallies As Wall Street Hikes Price Targets",
+        "url": "https://stockstotrade.com/news/10x-genomics-inc-txg-news-2026_07_14/",
+        "date": "2026-07-14 00:00:00",
+        "publisher": "StocksToTrade"
       }
     ]
   }
