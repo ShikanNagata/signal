@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-30",
+    "lastUpdated": "2026-08-02",
     "newsSource": "web search (FMP news endpoint unavailable on current plan)",
     "insiderInstitutionalAsOf": "2026-07-18 (FMP; not refreshed - insiderTrades/form13F endpoints require higher FMP plan)"
   },
@@ -40,22 +40,22 @@
     },
     "news": [
       {
-        "title": "WULF Stock Gains Momentum On Anthropic AI Data Center Deal",
-        "url": "https://timothysykes.com/news/terawulf-inc-wulf-news-2026_07_21/",
+        "title": "WULF Stock Under Pressure As New York Targets Hyperscale Data Centers",
+        "url": "https://stockstotrade.com/news/terawulf-inc-wulf-news-2026_07_29/",
+        "date": "2026-07-29 00:00:00",
+        "publisher": "StocksToTrade"
+      },
+      {
+        "title": "WULF Stock Rallies As Anthropic Megadeal Fuels AI Pivot",
+        "url": "https://stockstotrade.com/news/terawulf-inc-wulf-news-2026_07_21/",
         "date": "2026-07-21 00:00:00",
-        "publisher": "Timothy Sykes"
+        "publisher": "StocksToTrade"
       },
       {
         "title": "WULF Stock Jumps As Anthropic AI Megadeal Rewrites The Story",
         "url": "https://www.timothysykes.com/news/terawulf-inc-wulf-news-2026_07_15/",
         "date": "2026-07-15 00:00:00",
         "publisher": "Timothy Sykes"
-      },
-      {
-        "title": "Stock Market Today, July 6: TeraWulf Gains on $19 Billion Anthropic AI Lease Deal",
-        "url": "https://www.fool.com/coverage/stock-market-today/2026/07/06/stock-market-today-july-6-terawulf-gains-on-usd19-billion-anthropic-ai-lease-deal/",
-        "date": "2026-07-06 00:00:00",
-        "publisher": "The Motley Fool"
       }
     ]
   },
@@ -95,22 +95,22 @@
     },
     "news": [
       {
+        "title": "AMD Confirms August Radeon Price Hike: Both GPU Vendors Now Aligned, Buyers Pay More",
+        "url": "https://www.techtimes.com/articles/322593/20260801/amd-confirms-august-radeon-price-hike-both-gpu-vendors-now-aligned-buyers-pay-more.htm",
+        "date": "2026-08-01 00:00:00",
+        "publisher": "TechTimes"
+      },
+      {
+        "title": "AMD Stock Jumps as Reports Point to a GPU Price Increase in August",
+        "url": "https://www.tipranks.com/news/amd-stock-jumps-as-reports-point-to-a-gpu-price-increase-in-august",
+        "date": "2026-07-31 00:00:00",
+        "publisher": "TipRanks"
+      },
+      {
         "title": "AMD Stock Forecast: AI Revenue Surges 38%, but Shares Break Below $460 Support",
         "url": "https://www.fxleaders.com/news/2026/07/30/amd-stock-price-forecast-q2-earnings-july-2026/",
         "date": "2026-07-30 00:00:00",
         "publisher": "FX Leaders"
-      },
-      {
-        "title": "AMD Stock Down 17% From Peak - Can July 22 Advancing AI Save It?",
-        "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262037492-amd-stock-forecast-week-july-20-2026-advancing-ai-july-22-tradingkey",
-        "date": "2026-07-20 00:00:00",
-        "publisher": "TradingKey"
-      },
-      {
-        "title": "Why July Could Be a Big Month for AMD Stock Investors",
-        "url": "https://www.fool.com/investing/2026/07/04/why-july-could-be-a-big-month-for-amd-stock-invest/",
-        "date": "2026-07-04 00:00:00",
-        "publisher": "The Motley Fool"
       }
     ]
   },
@@ -150,44 +150,44 @@
     },
     "news": [
       {
+        "title": "Marvell Stock: Buy the Dip?",
+        "url": "https://www.fool.com/investing/2026/07/31/marvell-stock-buy-the-dip/",
+        "date": "2026-07-31 00:00:00",
+        "publisher": "The Motley Fool"
+      },
+      {
+        "title": "Marvell Down Huge This Month: The Pros See 120% Returns in 12 Months",
+        "url": "https://247wallst.com/investing/2026/07/31/marvell-down-huge-this-month-the-pros-see-120-returns-in-12-months/",
+        "date": "2026-07-31 00:00:00",
+        "publisher": "24/7 Wall Street"
+      },
+      {
         "title": "How Far Could Marvell Technology Stock Actually Fall From Here?",
         "url": "https://www.trefis.com/stock/mrvl/articles/609203/how-far-could-marvell-technology-stock-actually-fall-from-here/2026-07-28",
         "date": "2026-07-28 00:00:00",
         "publisher": "Trefis"
-      },
-      {
-        "title": "Wall Street is Bullish on Marvell. Here's Our Price Target.",
-        "url": "https://247wallst.com/investing/2026/07/22/wall-street-is-bullish-on-marvell-heres-our-price-target/",
-        "date": "2026-07-22 00:00:00",
-        "publisher": "24/7 Wall Street"
-      },
-      {
-        "title": "Wall Street Is Warming to Marvell After Its XConn Acquisition. Here's The Price Target",
-        "url": "https://247wallst.com/investing/2026/07/19/wall-street-is-warming-to-marvell-after-its-xconn-acquisition-heres-the-price-target/",
-        "date": "2026-07-19 00:00:00",
-        "publisher": "24/7 Wall Street"
       }
     ]
   },
   "IONQ": {
     "news": [
       {
+        "title": "IonQ Completes Acquisition of SkyWater Technology",
+        "url": "https://thequantuminsider.com/2026/07/31/ionq-completes-skywater-acquisition-quantum-manufacturing/",
+        "date": "2026-07-31 00:00:00",
+        "publisher": "The Quantum Insider"
+      },
+      {
+        "title": "IonQ Receives Regulatory Approval to Complete Acquisition of SkyWater Technology",
+        "url": "https://thequantuminsider.com/2026/07/28/ionq-receives-regulatory-approval-to-complete-acquisition-of-skywater-technology/",
+        "date": "2026-07-28 00:00:00",
+        "publisher": "The Quantum Insider"
+      },
+      {
         "title": "Why IonQ Stock Just Jumped",
         "url": "https://finance.yahoo.com/markets/stocks/articles/why-ionq-stock-just-jumped-161300315.html",
         "date": "2026-07-27 00:00:00",
         "publisher": "Yahoo Finance"
-      },
-      {
-        "title": "IonQ Stock Dives Below $40 on Pentagon Contract Loss Rumors, $30 Support Comes Into Focus",
-        "url": "https://www.fxleaders.com/news/2026/07/13/ionq-stock-dives-below-40-on-pentagon-contract-loss-rumors-30-support-comes-into-focus/",
-        "date": "2026-07-13 00:00:00",
-        "publisher": "FX Leaders"
-      },
-      {
-        "title": "How Far Can IonQ Stock Fall?",
-        "url": "https://www.trefis.com/stock/ionq/articles-v3/605676/how-far-can-ionq-stock-fall/2026-07-03",
-        "date": "2026-07-03 00:00:00",
-        "publisher": "Trefis"
       }
     ]
   },
@@ -282,6 +282,12 @@
     },
     "news": [
       {
+        "title": "NBIS Stock Jumps As Nebius Lands $1B AI Compute Deal",
+        "url": "https://stockstotrade.com/news/nebius-group-nv-nbis-news-2026_07_30-3/",
+        "date": "2026-07-30 00:00:00",
+        "publisher": "StocksToTrade"
+      },
+      {
         "title": "Nebius (NASDAQ:NBIS) shares fall 10% amid concerns over funding needs and asset-light strategy",
         "url": "https://ts2.tech/en/nebius-nasdaqnbis-shares-fall-10-amid-concerns-over-funding-needs-and-asset-light-strategy/",
         "date": "2026-07-29 00:00:00",
@@ -292,12 +298,6 @@
         "url": "https://www.fool.com/investing/2026/07/23/nvidia-delivers-fantastic-news-for-nebius-stock-in/",
         "date": "2026-07-23 00:00:00",
         "publisher": "The Motley Fool"
-      },
-      {
-        "title": "Nebius Group NBIS Stock Jumps On $1B AI Cloud Deal",
-        "url": "https://timothysykes.com/news/nebius-group-nv-nbis-news-2026_07_21-3/",
-        "date": "2026-07-21 00:00:00",
-        "publisher": "Timothy Sykes"
       }
     ]
   },
