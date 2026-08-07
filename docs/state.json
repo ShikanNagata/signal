@@ -1,5 +1,5 @@
 {
- "date": "2026-08-07",
+ "date": "2026-08-08",
  "tickers": {
   "WULF": {
    "mom_bucket": "Lv2 加速",
@@ -26,17 +26,17 @@
    "true_count": 0
   },
   "TXG": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 0
+   "mom_bucket": "Lv0 平穏",
+   "true_count": 1
   }
  },
  "baseline": {
   "WULF": {
    "mom_bucket": "Lv2 加速",
-   "true_count": 1
+   "true_count": 0
   },
   "AMD": {
-   "mom_bucket": "Lv2 加速",
+   "mom_bucket": "Lv1 軟調",
    "true_count": 1
   },
   "MRVL": {
@@ -52,11 +52,11 @@
    "true_count": 1
   },
   "NBIS": {
-   "mom_bucket": "Lv1 軟調",
-   "true_count": 1
+   "mom_bucket": "Lv2 加速",
+   "true_count": 0
   },
   "TXG": {
-   "mom_bucket": "Lv0 平穏",
+   "mom_bucket": "Lv2 加速",
    "true_count": 0
   }
  }
