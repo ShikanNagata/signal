@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-02",
+    "lastUpdated": "2026-08-09",
     "newsSource": "web search (FMP news endpoint unavailable on current plan)",
     "insiderInstitutionalAsOf": "2026-07-18 (FMP; not refreshed - insiderTrades/form13F endpoints require higher FMP plan)"
   },
@@ -40,21 +40,21 @@
     },
     "news": [
       {
-        "title": "WULF Stock Under Pressure As New York Targets Hyperscale Data Centers",
-        "url": "https://stockstotrade.com/news/terawulf-inc-wulf-news-2026_07_29/",
-        "date": "2026-07-29 00:00:00",
-        "publisher": "StocksToTrade"
+        "title": "TeraWulf Reports Second Quarter 2026 Results",
+        "url": "https://investors.terawulf.com/news-events/press-releases/detail/144/terawulf-reports-second-quarter-2026-results",
+        "date": "2026-08-05 00:00:00",
+        "publisher": "TeraWulf IR"
       },
       {
-        "title": "WULF Stock Rallies As Anthropic Megadeal Fuels AI Pivot",
-        "url": "https://stockstotrade.com/news/terawulf-inc-wulf-news-2026_07_21/",
-        "date": "2026-07-21 00:00:00",
-        "publisher": "StocksToTrade"
+        "title": "WULF Stock Faces New Risk As New York Halts Hyperscale Data Centers",
+        "url": "https://www.timothysykes.com/news/terawulf-inc-wulf-news-2026_08_05/",
+        "date": "2026-08-05 00:00:00",
+        "publisher": "Timothy Sykes"
       },
       {
-        "title": "WULF Stock Jumps As Anthropic AI Megadeal Rewrites The Story",
-        "url": "https://www.timothysykes.com/news/terawulf-inc-wulf-news-2026_07_15/",
-        "date": "2026-07-15 00:00:00",
+        "title": "WULF Stock Surges As Anthropic Mega-Deal Redraws AI Map",
+        "url": "https://www.timothysykes.com/news/terawulf-inc-wulf-news-2026_08_03-2/",
+        "date": "2026-08-03 00:00:00",
         "publisher": "Timothy Sykes"
       }
     ]
@@ -95,22 +95,22 @@
     },
     "news": [
       {
-        "title": "AMD Confirms August Radeon Price Hike: Both GPU Vendors Now Aligned, Buyers Pay More",
-        "url": "https://www.techtimes.com/articles/322593/20260801/amd-confirms-august-radeon-price-hike-both-gpu-vendors-now-aligned-buyers-pay-more.htm",
-        "date": "2026-08-01 00:00:00",
-        "publisher": "TechTimes"
+        "title": "AMD Will Become a $1 Trillion Company By This Date",
+        "url": "https://247wallst.com/investing/2026/08/07/amd-will-become-a-1-trillion-company-by-this-date/",
+        "date": "2026-08-07 00:00:00",
+        "publisher": "24/7 Wall Street"
       },
       {
-        "title": "AMD Stock Jumps as Reports Point to a GPU Price Increase in August",
-        "url": "https://www.tipranks.com/news/amd-stock-jumps-as-reports-point-to-a-gpu-price-increase-in-august",
-        "date": "2026-07-31 00:00:00",
-        "publisher": "TipRanks"
+        "title": "Lisa Su brushes off Musk's Nvidia commitment as AMD stock sinks after earnings",
+        "url": "https://www.cnbc.com/2026/08/05/amd-stock-today-earnings-q2.html",
+        "date": "2026-08-05 00:00:00",
+        "publisher": "CNBC"
       },
       {
-        "title": "AMD Stock Forecast: AI Revenue Surges 38%, but Shares Break Below $460 Support",
-        "url": "https://www.fxleaders.com/news/2026/07/30/amd-stock-price-forecast-q2-earnings-july-2026/",
-        "date": "2026-07-30 00:00:00",
-        "publisher": "FX Leaders"
+        "title": "Why AMD Stock Dropped Today",
+        "url": "https://www.fool.com/investing/2026/08/05/why-amd-stock-dropped-today/",
+        "date": "2026-08-05 00:00:00",
+        "publisher": "The Motley Fool"
       }
     ]
   },
@@ -150,44 +150,44 @@
     },
     "news": [
       {
-        "title": "Marvell Stock: Buy the Dip?",
-        "url": "https://www.fool.com/investing/2026/07/31/marvell-stock-buy-the-dip/",
-        "date": "2026-07-31 00:00:00",
-        "publisher": "The Motley Fool"
+        "title": "MRVL Stock Jumps As New AI Memory Products Draw Trader Focus",
+        "url": "https://www.timothysykes.com/news/marvell-technology-inc-mrvl-news-2026_08_07/",
+        "date": "2026-08-07 00:00:00",
+        "publisher": "Timothy Sykes"
       },
       {
-        "title": "Marvell Down Huge This Month: The Pros See 120% Returns in 12 Months",
-        "url": "https://247wallst.com/investing/2026/07/31/marvell-down-huge-this-month-the-pros-see-120-returns-in-12-months/",
-        "date": "2026-07-31 00:00:00",
-        "publisher": "24/7 Wall Street"
+        "title": "MRVL Stock Slides As AI Chip Euphoria Faces Harsh Reset",
+        "url": "https://www.timothysykes.com/news/marvell-technology-inc-mrvl-news-2026_08_06/",
+        "date": "2026-08-06 00:00:00",
+        "publisher": "Timothy Sykes"
       },
       {
-        "title": "How Far Could Marvell Technology Stock Actually Fall From Here?",
-        "url": "https://www.trefis.com/stock/mrvl/articles/609203/how-far-could-marvell-technology-stock-actually-fall-from-here/2026-07-28",
-        "date": "2026-07-28 00:00:00",
-        "publisher": "Trefis"
+        "title": "Marvell Stock Surges 10%: Next-Gen AI Storage Unveiled Ahead of Q2 Earnings",
+        "url": "https://www.benzinga.com/markets/tech/26/08/60914959/marvell-stock-surges-10-next-gen-ai-storage-unveiled-ahead-of-q2-earnings",
+        "date": "2026-08-04 00:00:00",
+        "publisher": "Benzinga"
       }
     ]
   },
   "IONQ": {
     "news": [
       {
-        "title": "IonQ Completes Acquisition of SkyWater Technology",
-        "url": "https://thequantuminsider.com/2026/07/31/ionq-completes-skywater-acquisition-quantum-manufacturing/",
-        "date": "2026-07-31 00:00:00",
-        "publisher": "The Quantum Insider"
+        "title": "IonQ (IONQ) Stock Trades Up, Here Is Why",
+        "url": "https://markets.financialcontent.com/stocks/article/stockstory-2026-8-7-ionq-ionq-stock-trades-up-here-is-why",
+        "date": "2026-08-07 00:00:00",
+        "publisher": "StockStory"
       },
       {
-        "title": "IonQ Receives Regulatory Approval to Complete Acquisition of SkyWater Technology",
-        "url": "https://thequantuminsider.com/2026/07/28/ionq-receives-regulatory-approval-to-complete-acquisition-of-skywater-technology/",
-        "date": "2026-07-28 00:00:00",
-        "publisher": "The Quantum Insider"
+        "title": "IonQ Posts Q2 Double Beat, Raises 2026 Outlook, Shares Rise",
+        "url": "https://www.benzinga.com/markets/earnings/26/08/60973145/ionq-posts-q2-double-beat-raises-2026-outlook-shares-rise",
+        "date": "2026-08-06 00:00:00",
+        "publisher": "Benzinga"
       },
       {
-        "title": "Why IonQ Stock Just Jumped",
-        "url": "https://finance.yahoo.com/markets/stocks/articles/why-ionq-stock-just-jumped-161300315.html",
-        "date": "2026-07-27 00:00:00",
-        "publisher": "Yahoo Finance"
+        "title": "Why IonQ (IONQ) Stock Is Up Today",
+        "url": "https://markets.financialcontent.com/stocks/article/stockstory-2026-8-3-why-ionq-ionq-stock-is-up-today",
+        "date": "2026-08-03 00:00:00",
+        "publisher": "StockStory"
       }
     ]
   },
@@ -227,22 +227,22 @@
     },
     "news": [
       {
-        "title": "Circle Internet Group (CRCL) Dips Amid Elevated Volatility Ahead of Earnings",
-        "url": "https://www.gurufocus.com/news/8987409/circle-internet-group-crcl-dips-amid-elevated-volatility-ahead-of-earnings",
-        "date": "2026-07-29 00:00:00",
-        "publisher": "GuruFocus"
+        "title": "Circle stock jumps as Q2 earnings beat estimates, USDC prospect seemingly intact",
+        "url": "https://seekingalpha.com/news/4625754-circle-stock-jumps-as-q2-earnings-beat-estimates-usdc-prospect-seemingly-intact",
+        "date": "2026-08-05 00:00:00",
+        "publisher": "Seeking Alpha"
       },
       {
-        "title": "CRCL Stock Jumps As Circle National Trust Wins OCC Green Light",
-        "url": "https://timothysykes.com/news/circle-internet-group-inc-crcl-news-2026_07_20-2/",
-        "date": "2026-07-20 00:00:00",
-        "publisher": "Timothy Sykes"
-      },
-      {
-        "title": "CRCL Stock Jumps As Circle Wins Key U.S. Bank Approval",
-        "url": "https://stockstotrade.com/news/circle-internet-group-inc-crcl-news-2026_07_20/",
-        "date": "2026-07-20 00:00:00",
+        "title": "CRCL Stock Holds Range As Traders Track Mixed Margins",
+        "url": "https://stockstotrade.com/news/circle-internet-group-inc-crcl-news-2026_08_05/",
+        "date": "2026-08-05 00:00:00",
         "publisher": "StocksToTrade"
+      },
+      {
+        "title": "CRCL Price Targets Range From $38 to $82: What Is Happening?",
+        "url": "https://www.benzinga.com/crypto/cryptocurrency/26/08/60882375/crcl-price-targets-range-from-38-to-82-what-is-happening",
+        "date": "2026-08-03 00:00:00",
+        "publisher": "Benzinga"
       }
     ]
   },
@@ -282,22 +282,22 @@
     },
     "news": [
       {
-        "title": "NBIS Stock Jumps As Nebius Lands $1B AI Compute Deal",
-        "url": "https://stockstotrade.com/news/nebius-group-nv-nbis-news-2026_07_30-3/",
-        "date": "2026-07-30 00:00:00",
-        "publisher": "StocksToTrade"
+        "title": "Nebius Group (NBIS) Jumps As $1B AI Deal Fuels Volatile Rally",
+        "url": "https://www.timothysykes.com/news/nebius-group-nv-nbis-news-2026_08_07/",
+        "date": "2026-08-07 00:00:00",
+        "publisher": "Timothy Sykes"
       },
       {
-        "title": "Nebius (NASDAQ:NBIS) shares fall 10% amid concerns over funding needs and asset-light strategy",
-        "url": "https://ts2.tech/en/nebius-nasdaqnbis-shares-fall-10-amid-concerns-over-funding-needs-and-asset-light-strategy/",
-        "date": "2026-07-29 00:00:00",
-        "publisher": "TS2"
+        "title": "Nebius NBIS Stock Falls Below $200 as Neocloud Concerns Return Ahead of Q2 Earnings",
+        "url": "https://www.fxleaders.com/news/2026/08/06/nebius-nbis-stock-falls-below-200-as-neocloud-concerns-return-ahead-of-q2-earnings/",
+        "date": "2026-08-06 00:00:00",
+        "publisher": "FX Leaders"
       },
       {
-        "title": "Nvidia Delivers Fantastic News for Nebius Stock Investors!",
-        "url": "https://www.fool.com/investing/2026/07/23/nvidia-delivers-fantastic-news-for-nebius-stock-in/",
-        "date": "2026-07-23 00:00:00",
-        "publisher": "The Motley Fool"
+        "title": "What Is Going On With Nebius Stock On Monday?",
+        "url": "https://www.benzinga.com/markets/tech/26/08/60879696/what-is-going-on-nebius-stock-on-monday",
+        "date": "2026-08-03 00:00:00",
+        "publisher": "Benzinga"
       }
     ]
   },
@@ -337,22 +337,22 @@
     },
     "news": [
       {
-        "title": "10x Genomics (NASDAQ:TXG) Sets New 12-Month High - What's Next?",
-        "url": "https://www.themarketsdaily.com/2026/07/21/10x-genomics-nasdaqtxg-sets-new-12-month-high-whats-next.html",
-        "date": "2026-07-21 00:00:00",
-        "publisher": "Markets Daily"
+        "title": "10x Genomics Reports Second Quarter 2026 Financial Results",
+        "url": "https://www.prnewswire.com/news-releases/10x-genomics-reports-second-quarter-2026-financial-results-302845409.html",
+        "date": "2026-08-06 00:00:00",
+        "publisher": "PR Newswire"
       },
       {
-        "title": "10x Genomics to Report Q2 2026 Results Aug. 6",
-        "url": "https://www.stocktitan.net/news/TXG/10x-genomics-to-report-second-quarter-2026-financial-results-on-s9xcymyfy3wy.html",
-        "date": "2026-07-15 00:00:00",
-        "publisher": "StockTitan"
+        "title": "10x Genomics Jumps as Investors Appear to Cheer a Better-Than-Expected Q2 Report",
+        "url": "https://www.quiverquant.com/news/10x+Genomics+Jumps+as+Investors+Appear+to+Cheer+a+Better-Than-Expected+Q2+Report",
+        "date": "2026-08-06 00:00:00",
+        "publisher": "Quiver Quantitative"
       },
       {
-        "title": "TXG Stock Rallies As Wall Street Hikes Price Targets",
-        "url": "https://stockstotrade.com/news/10x-genomics-inc-txg-news-2026_07_14/",
-        "date": "2026-07-14 00:00:00",
-        "publisher": "StocksToTrade"
+        "title": "10x Genomics's (NASDAQ:TXG) Q2 CY2026: Strong Sales, Full-Year Outlook Slightly Exceeds Expectations",
+        "url": "https://stockstory.org/us/stocks/nasdaq/txg/news/earnings/10x-genomicss-nasdaqtxg-q2-cy2026-strong-sales-full-year-outlook-slightly-exceeds-expectations",
+        "date": "2026-08-06 00:00:00",
+        "publisher": "StockStory"
       }
     ]
   }
