@@ -1,33 +1,33 @@
 {
- "date": "2026-08-27",
+ "date": "2026-08-28",
  "tickers": {
   "WULF": {
    "mom_bucket": "Lv2 加速",
-   "true_count": 1
+   "true_count": 2
   },
   "AMD": {
    "mom_bucket": "Lv1 軟調",
    "true_count": 1
   },
   "MRVL": {
-   "mom_bucket": "Lv1 軟調",
+   "mom_bucket": "Lv3 急落",
    "true_count": 0
   },
   "IONQ": {
-   "mom_bucket": "Lv3 急落",
-   "true_count": 0
+   "mom_bucket": "Lv2 加速",
+   "true_count": 1
   },
   "CRCL": {
-   "mom_bucket": "Lv1 軟調",
+   "mom_bucket": "Lv0 平穏",
    "true_count": 0
   },
   "NBIS": {
-   "mom_bucket": "Lv3 急落",
-   "true_count": 0
+   "mom_bucket": "Lv2 加速",
+   "true_count": 1
   },
   "TXG": {
    "mom_bucket": "Lv1 軟調",
-   "true_count": 0
+   "true_count": 1
   }
  },
  "baseline": {
@@ -41,7 +41,7 @@
   },
   "MRVL": {
    "mom_bucket": "Lv1 軟調",
-   "true_count": 1
+   "true_count": 0
   },
   "IONQ": {
    "mom_bucket": "Lv3 急落",
@@ -49,14 +49,14 @@
   },
   "CRCL": {
    "mom_bucket": "Lv1 軟調",
-   "true_count": 1
+   "true_count": 0
   },
   "NBIS": {
    "mom_bucket": "Lv3 急落",
-   "true_count": 1
+   "true_count": 0
   },
   "TXG": {
-   "mom_bucket": "Lv0 平穏",
+   "mom_bucket": "Lv1 軟調",
    "true_count": 0
   }
  }
