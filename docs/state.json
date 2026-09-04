@@ -1,8 +1,8 @@
 {
- "date": "2026-09-03",
+ "date": "2026-09-04",
  "tickers": {
   "WULF": {
-   "mom_bucket": "Lv3 急落",
+   "mom_bucket": "Lv2 加速",
    "true_count": 0
   },
   "AMD": {
@@ -22,8 +22,8 @@
    "true_count": 0
   },
   "NBIS": {
-   "mom_bucket": "Lv3 急落",
-   "true_count": 0
+   "mom_bucket": "Lv2 加速",
+   "true_count": 1
   },
   "TXG": {
    "mom_bucket": "Lv2 加速",
