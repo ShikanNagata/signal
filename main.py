@@ -124,6 +124,13 @@ def update_csvs(cfg):
             df = df.reset_index()
             df["Date"] = pd.to_datetime(df["Date"]).dt.tz_localize(None)
             df = df[["Date", "Open", "High", "Low", "Close", "Volume"]]
+            # 未確定の日足を除外。市場クローズ直後はYahoo側でOHLCがnullのまま
+            # 出来高だけ入った行が返ることがあり、そのまま書くと終値計算が壊れる。
+            before = len(df)
+            df = df.dropna(subset=["Open", "High", "Low", "Close"])
+            dropped = before - len(df)
+            if dropped:
+                print(f"  ・{t}: 未確定の日足 {dropped}行を除外")
             if len(df) < 250:
                 raise ValueError(f"rows={len(df)} too few")
             df.to_csv(os.path.join("data", f"{t}.csv"), index=False)
@@ -460,7 +467,9 @@ def fetch_regime():
     out = {}
     for sym, label in (("QQQ", "QQQ"), ("BTC-USD", "BTC")):
         try:
-            h = yf.Ticker(sym).history(period="300d")["Close"]
+            h = yf.Ticker(sym).history(period="300d")["Close"].dropna()
+            if len(h) < 200:
+                raise ValueError(f"rows={len(h)} too few")
             ma = float(h.rolling(200).mean().iloc[-1])
             px = float(h.iloc[-1])
             out[label] = {"price": round(px, 2), "ma200": round(ma, 2),

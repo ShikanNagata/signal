@@ -25,12 +25,12 @@
   "comment_output": "結果JSONとHTMLを保存するサブフォルダ名。日付つきで保存される",
 
   "my_holdings": {
-    "comment": "（任意）自分の保有。2026/8/3約定分まで反映（取引履歴CSV＋8/3画面）。SYMは8/3に$44.00で全売却済み。SKDDはレバレッジ型ETFのため追跡対象外",
+    "comment": "（任意）自分の保有。2026/8/19約定分まで反映（取引履歴CSV tradehistory(US)_20260820 (1)）。MRVLは8/19に10株@$236.00を買増し（38→48株、平均取得単価163.18→178.35、約定代金ベース）。TXGは8/18約定で$58.50全売却済み。SYMは8/4約定で$44.00全売却済み。SKDDはレバレッジ型ETFのため追跡対象外。BMBLは8/19に100株@$2.59買→同日$2.72売の日計りで保有0。FIGは8/18に40株@$24.90購入し保有中だが、ユーザー指定によりtickers追跡対象には未追加",
     "WULF": {"qty": 111, "avg_cost_usd": 18.78},
     "AMD":  {"qty": 17,  "avg_cost_usd": 275.92},
-    "MRVL": {"qty": 16,  "avg_cost_usd": 127.09},
+    "MRVL": {"qty": 48,  "avg_cost_usd": 178.35},
     "IONQ": {"qty": 50,  "avg_cost_usd": 42.58},
-    "TXG":  {"qty": 37,  "avg_cost_usd": 43.38},
+    "TXG":  {"qty": 0,   "avg_cost_usd": 0},
     "CRCL": {"qty": 0,   "avg_cost_usd": 0},
     "NBIS": {"qty": 0,   "avg_cost_usd": 0}
   }
