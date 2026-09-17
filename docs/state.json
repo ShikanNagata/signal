@@ -1,5 +1,5 @@
 {
- "date": "2026-09-16",
+ "date": "2026-09-17",
  "tickers": {
   "WULF": {
    "mom_bucket": "Lv3 急落",
@@ -15,11 +15,11 @@
   },
   "IONQ": {
    "mom_bucket": "Lv2 加速",
-   "true_count": 0
+   "true_count": 1
   },
   "CRCL": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 1
+   "mom_bucket": "Lv3 急落",
+   "true_count": 0
   },
   "NBIS": {
    "mom_bucket": "Lv3 急落",
