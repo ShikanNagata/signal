@@ -1,60 +1,60 @@
 {
- "date": "2026-09-25",
- "usdjpy": 158.68,
+ "date": "2026-09-26",
+ "usdjpy": 157.18,
  "tickers": [
   {
    "ticker": "WULF",
-   "price": 16.35,
+   "price": 16.29,
    "holding": {
     "qty": 111,
     "avg_cost_usd": 18.78,
-    "pnl_pct": -12.9,
-    "value_usd": 1815,
-    "pnl_usd": -270,
-    "day_change_usd": -109,
-    "day_change_pct": -5.65
+    "pnl_pct": -13.3,
+    "value_usd": 1808,
+    "pnl_usd": -276,
+    "day_change_usd": -7,
+    "day_change_pct": -0.37
    },
    "sell_side": {
     "mom_bucket": "Lv2 加速",
     "mom_score": 3,
-    "streak_days": 5,
-    "ret5_pct": 6.2,
-    "drawdown60d_pct": -33.8,
+    "streak_days": 6,
+    "ret5_pct": -1.1,
+    "drawdown60d_pct": -30.9,
     "vol_zone": "High"
    },
    "hold_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 1.52,
-     "loss_rate_pct": 48.7,
-     "p10_pct": -16.87,
-     "p_down10_pct": 27.2,
+     "avg_ret_pct": 1.55,
+     "loss_rate_pct": 49.0,
+     "p10_pct": -16.97,
+     "p_down10_pct": 27.4,
      "p_down20_pct": 5.7,
-     "mae_med_pct": -10.53,
-     "mae_p10_pct": -22.44,
+     "mae_med_pct": -10.39,
+     "mae_p10_pct": -22.5,
      "avg_pnl_usd": 28,
-     "p10_loss_usd": -306
+     "p10_loss_usd": -307
     },
     "10d": {
-     "avg_ret_pct": 3.36,
-     "loss_rate_pct": 48.7,
-     "p10_pct": -20.23,
-     "p_down10_pct": 30.1,
-     "p_down20_pct": 10.9,
+     "avg_ret_pct": 3.17,
+     "loss_rate_pct": 49.0,
+     "p10_pct": -20.27,
+     "p_down10_pct": 30.3,
+     "p_down20_pct": 11.0,
      "mae_med_pct": -12.75,
      "mae_p10_pct": -29.39,
-     "avg_pnl_usd": 61,
+     "avg_pnl_usd": 57,
      "p10_loss_usd": -367
     },
     "20d": {
-     "avg_ret_pct": 4.24,
-     "loss_rate_pct": 50.3,
-     "p10_pct": -29.85,
-     "p_down10_pct": 40.1,
-     "p_down20_pct": 26.5,
-     "mae_med_pct": -17.16,
-     "mae_p10_pct": -37.09,
-     "avg_pnl_usd": 77,
-     "p10_loss_usd": -542
+     "avg_ret_pct": 4.43,
+     "loss_rate_pct": 49.3,
+     "p10_pct": -29.89,
+     "p_down10_pct": 39.7,
+     "p_down20_pct": 26.7,
+     "mae_med_pct": -17.56,
+     "mae_p10_pct": -37.11,
+     "avg_pnl_usd": 80,
+     "p10_loss_usd": -540
     }
    },
    "buy_outlook_current_bucket": {
@@ -64,108 +64,104 @@
      "worst_pct": -7.2
     },
     "10d": {
-     "avg_ret_pct": 3.19,
-     "win_rate_pct": 52.9,
+     "avg_ret_pct": 3.06,
+     "win_rate_pct": 55.6,
      "worst_pct": -8.43
     },
     "20d": {
-     "avg_ret_pct": 5.94,
-     "win_rate_pct": 75.0,
+     "avg_ret_pct": 5.64,
+     "win_rate_pct": 76.9,
      "worst_pct": -4.51
     }
    },
    "signal_lines": {
     "MA5": {
-     "price": 16.92,
-     "dist_pct": 3.5,
+     "price": 16.89,
+     "dist_pct": 3.7,
      "broken": true
     },
     "MA50": {
-     "price": 16.96,
+     "price": 16.89,
      "dist_pct": 3.7,
      "broken": true
     },
     "MA200": {
      "price": 18.05,
-     "dist_pct": 10.4,
+     "dist_pct": 10.8,
      "broken": true
     }
    },
    "buy_side": {
     "bucket": "0/3 底値",
     "sig_score": 0,
-    "rsi": 56.6,
+    "rsi": 50.3,
     "rsi_turn": false,
     "ma5_cross": false,
     "macd_up": false,
     "true_count": 0
    },
    "sector_breadth_today": {
-    "down": 6,
+    "down": 2,
     "total": 7,
     "down_tickers": [
      "WULF",
-     "AMD",
-     "MRVL",
-     "CRCL",
-     "NBIS",
-     "TXG"
+     "MRVL"
     ]
    }
   },
   {
    "ticker": "AMD",
-   "price": 614.61,
+   "price": 629.26,
    "holding": {
     "qty": 17,
     "avg_cost_usd": 275.92,
-    "pnl_pct": 122.7,
-    "value_usd": 10448,
-    "pnl_usd": 5758,
-    "day_change_usd": -156,
-    "day_change_pct": -1.47
+    "pnl_pct": 128.1,
+    "value_usd": 10697,
+    "pnl_usd": 6007,
+    "day_change_usd": 249,
+    "day_change_pct": 2.38
    },
    "sell_side": {
     "mom_bucket": "Lv0 平穏",
     "mom_score": 0,
-    "streak_days": 5,
-    "ret5_pct": 19.9,
-    "drawdown60d_pct": -1.5,
+    "streak_days": 6,
+    "ret5_pct": 15.4,
+    "drawdown60d_pct": 0.0,
     "vol_zone": "High"
    },
    "hold_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 1.37,
-     "loss_rate_pct": 45.2,
+     "avg_ret_pct": 1.51,
+     "loss_rate_pct": 44.4,
      "p10_pct": -9.26,
      "p_down10_pct": 8.1,
      "p_down20_pct": 1.5,
-     "mae_med_pct": -4.77,
+     "mae_med_pct": -4.69,
      "mae_p10_pct": -12.19,
-     "avg_pnl_usd": 143,
-     "p10_loss_usd": -968
+     "avg_pnl_usd": 162,
+     "p10_loss_usd": -991
     },
     "10d": {
-     "avg_ret_pct": 4.41,
-     "loss_rate_pct": 37.8,
-     "p10_pct": -10.92,
-     "p_down10_pct": 12.6,
+     "avg_ret_pct": 4.52,
+     "loss_rate_pct": 37.3,
+     "p10_pct": -10.93,
+     "p_down10_pct": 12.7,
      "p_down20_pct": 0.7,
-     "mae_med_pct": -6.37,
-     "mae_p10_pct": -17.16,
-     "avg_pnl_usd": 461,
-     "p10_loss_usd": -1141
+     "mae_med_pct": -6.26,
+     "mae_p10_pct": -17.25,
+     "avg_pnl_usd": 484,
+     "p10_loss_usd": -1169
     },
     "20d": {
-     "avg_ret_pct": 8.48,
-     "loss_rate_pct": 39.3,
-     "p10_pct": -16.16,
-     "p_down10_pct": 21.5,
+     "avg_ret_pct": 8.58,
+     "loss_rate_pct": 38.8,
+     "p10_pct": -16.2,
+     "p_down10_pct": 21.6,
      "p_down20_pct": 3.0,
      "mae_med_pct": -6.9,
-     "mae_p10_pct": -23.21,
-     "avg_pnl_usd": 886,
-     "p10_loss_usd": -1688
+     "mae_p10_pct": -23.22,
+     "avg_pnl_usd": 918,
+     "p10_loss_usd": -1733
     }
    },
    "buy_outlook_current_bucket": {
@@ -187,96 +183,92 @@
    },
    "signal_lines": {
     "MA5": {
-     "price": 591.76,
-     "dist_pct": -3.7,
+     "price": 608.6,
+     "dist_pct": -3.3,
      "broken": false
     },
     "MA50": {
-     "price": 500.12,
-     "dist_pct": -18.6,
+     "price": 502.12,
+     "dist_pct": -20.2,
      "broken": false
     },
     "MA200": {
-     "price": 360.65,
-     "dist_pct": -41.3,
+     "price": 362.71,
+     "dist_pct": -42.4,
      "broken": false
     }
    },
    "buy_side": {
     "bucket": "3/3 過熱",
     "sig_score": 3,
-    "rsi": 80.5,
+    "rsi": 81.8,
     "rsi_turn": false,
     "ma5_cross": false,
     "macd_up": true,
     "true_count": 1
    },
    "sector_breadth_today": {
-    "down": 6,
+    "down": 2,
     "total": 7,
     "down_tickers": [
      "WULF",
-     "AMD",
-     "MRVL",
-     "CRCL",
-     "NBIS",
-     "TXG"
+     "MRVL"
     ]
    }
   },
   {
    "ticker": "MRVL",
-   "price": 260.9,
+   "price": 258.95,
    "holding": {
     "qty": 48,
     "avg_cost_usd": 178.35,
-    "pnl_pct": 46.3,
-    "value_usd": 12523,
-    "pnl_usd": 3962,
-    "day_change_usd": -70,
-    "day_change_pct": -0.56
+    "pnl_pct": 45.2,
+    "value_usd": 12430,
+    "pnl_usd": 3869,
+    "day_change_usd": -94,
+    "day_change_pct": -0.75
    },
    "sell_side": {
-    "mom_bucket": "Lv1 軟調",
-    "mom_score": 1,
-    "streak_days": 5,
-    "ret5_pct": 13.6,
-    "drawdown60d_pct": -12.4,
+    "mom_bucket": "Lv0 平穏",
+    "mom_score": 0,
+    "streak_days": 1,
+    "ret5_pct": 7.6,
+    "drawdown60d_pct": -4.8,
     "vol_zone": "Normal"
    },
    "hold_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 1.78,
-     "loss_rate_pct": 42.0,
-     "p10_pct": -8.94,
-     "p_down10_pct": 7.2,
-     "p_down20_pct": 0.0,
-     "mae_med_pct": -3.72,
-     "mae_p10_pct": -12.19,
-     "avg_pnl_usd": 223,
-     "p10_loss_usd": -1120
+     "avg_ret_pct": 2.58,
+     "loss_rate_pct": 40.8,
+     "p10_pct": -8.86,
+     "p_down10_pct": 8.3,
+     "p_down20_pct": 0.6,
+     "mae_med_pct": -4.0,
+     "mae_p10_pct": -13.32,
+     "avg_pnl_usd": 321,
+     "p10_loss_usd": -1101
     },
     "10d": {
-     "avg_ret_pct": 3.63,
-     "loss_rate_pct": 39.4,
-     "p10_pct": -11.79,
-     "p_down10_pct": 13.9,
-     "p_down20_pct": 2.9,
-     "mae_med_pct": -5.24,
-     "mae_p10_pct": -17.43,
-     "avg_pnl_usd": 455,
-     "p10_loss_usd": -1476
+     "avg_ret_pct": 6.17,
+     "loss_rate_pct": 42.0,
+     "p10_pct": -9.62,
+     "p_down10_pct": 10.1,
+     "p_down20_pct": 0.6,
+     "mae_med_pct": -5.25,
+     "mae_p10_pct": -16.6,
+     "avg_pnl_usd": 767,
+     "p10_loss_usd": -1196
     },
     "20d": {
-     "avg_ret_pct": 8.12,
-     "loss_rate_pct": 34.8,
-     "p10_pct": -20.18,
-     "p_down10_pct": 16.3,
-     "p_down20_pct": 10.4,
-     "mae_med_pct": -7.15,
-     "mae_p10_pct": -23.67,
-     "avg_pnl_usd": 1017,
-     "p10_loss_usd": -2527
+     "avg_ret_pct": 12.06,
+     "loss_rate_pct": 32.0,
+     "p10_pct": -10.94,
+     "p_down10_pct": 13.0,
+     "p_down20_pct": 3.0,
+     "mae_med_pct": -6.03,
+     "mae_p10_pct": -20.46,
+     "avg_pnl_usd": 1499,
+     "p10_loss_usd": -1360
     }
    },
    "buy_outlook_current_bucket": {
@@ -298,165 +290,157 @@
    },
    "signal_lines": {
     "MA5": {
-     "price": 253.13,
-     "dist_pct": -3.0,
+     "price": 256.77,
+     "dist_pct": -0.8,
      "broken": false
     },
     "MA50": {
-     "price": 218.04,
-     "dist_pct": -16.4,
+     "price": 219.1,
+     "dist_pct": -15.4,
      "broken": false
     },
     "MA200": {
-     "price": 160.81,
-     "dist_pct": -38.4,
+     "price": 161.61,
+     "dist_pct": -37.6,
      "broken": false
     }
    },
    "buy_side": {
     "bucket": "3/3 過熱",
     "sig_score": 3,
-    "rsi": 75.2,
+    "rsi": 73.3,
     "rsi_turn": false,
     "ma5_cross": false,
-    "macd_up": true,
-    "true_count": 1
+    "macd_up": false,
+    "true_count": 0
    },
    "sector_breadth_today": {
-    "down": 6,
+    "down": 2,
     "total": 7,
     "down_tickers": [
      "WULF",
-     "AMD",
-     "MRVL",
-     "CRCL",
-     "NBIS",
-     "TXG"
+     "MRVL"
     ]
    }
   },
   {
    "ticker": "IONQ",
-   "price": 42.54,
+   "price": 44.98,
    "holding": {
     "qty": 50,
     "avg_cost_usd": 42.58,
-    "pnl_pct": -0.1,
-    "value_usd": 2127,
-    "pnl_usd": -2,
-    "day_change_usd": 90,
-    "day_change_pct": 4.42
+    "pnl_pct": 5.6,
+    "value_usd": 2249,
+    "pnl_usd": 120,
+    "day_change_usd": 122,
+    "day_change_pct": 5.74
    },
    "sell_side": {
     "mom_bucket": "Lv1 軟調",
-    "mom_score": 2,
-    "streak_days": 3,
-    "ret5_pct": 15.5,
-    "drawdown60d_pct": -20.1,
-    "vol_zone": "Ignition"
+    "mom_score": 1,
+    "streak_days": 4,
+    "ret5_pct": 11.5,
+    "drawdown60d_pct": -12.5,
+    "vol_zone": "Active"
    },
    "hold_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 0.99,
-     "loss_rate_pct": 50.9,
-     "p10_pct": -14.25,
-     "p_down10_pct": 17.3,
-     "p_down20_pct": 1.8,
-     "mae_med_pct": -6.9,
-     "mae_p10_pct": -18.19,
-     "avg_pnl_usd": 21,
-     "p10_loss_usd": -303
+     "avg_ret_pct": 1.03,
+     "loss_rate_pct": 51.9,
+     "p10_pct": -14.36,
+     "p_down10_pct": 18.3,
+     "p_down20_pct": 1.9,
+     "mae_med_pct": -7.08,
+     "mae_p10_pct": -18.42,
+     "avg_pnl_usd": 23,
+     "p10_loss_usd": -323
     },
     "10d": {
-     "avg_ret_pct": 5.57,
-     "loss_rate_pct": 43.6,
-     "p10_pct": -22.3,
-     "p_down10_pct": 24.5,
-     "p_down20_pct": 11.8,
-     "mae_med_pct": -11.55,
-     "mae_p10_pct": -25.78,
-     "avg_pnl_usd": 118,
-     "p10_loss_usd": -474
+     "avg_ret_pct": 5.29,
+     "loss_rate_pct": 44.2,
+     "p10_pct": -22.76,
+     "p_down10_pct": 26.0,
+     "p_down20_pct": 12.5,
+     "mae_med_pct": -12.34,
+     "mae_p10_pct": -25.94,
+     "avg_pnl_usd": 119,
+     "p10_loss_usd": -512
     },
     "20d": {
-     "avg_ret_pct": 10.73,
-     "loss_rate_pct": 39.1,
-     "p10_pct": -34.24,
-     "p_down10_pct": 30.0,
-     "p_down20_pct": 21.8,
-     "mae_med_pct": -14.02,
-     "mae_p10_pct": -40.97,
-     "avg_pnl_usd": 228,
-     "p10_loss_usd": -728
+     "avg_ret_pct": 9.39,
+     "loss_rate_pct": 40.4,
+     "p10_pct": -34.54,
+     "p_down10_pct": 31.7,
+     "p_down20_pct": 23.1,
+     "mae_med_pct": -14.5,
+     "mae_p10_pct": -41.03,
+     "avg_pnl_usd": 211,
+     "p10_loss_usd": -777
     }
    },
    "buy_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 1.6,
-     "win_rate_pct": 50.5,
-     "worst_pct": -23.42
+     "avg_ret_pct": -1.83,
+     "win_rate_pct": 35.5,
+     "worst_pct": -26.98
     },
     "10d": {
-     "avg_ret_pct": 1.21,
-     "win_rate_pct": 48.4,
-     "worst_pct": -38.31
+     "avg_ret_pct": -2.02,
+     "win_rate_pct": 35.5,
+     "worst_pct": -26.31
     },
     "20d": {
-     "avg_ret_pct": -0.03,
-     "win_rate_pct": 41.1,
-     "worst_pct": -39.94
+     "avg_ret_pct": -5.28,
+     "win_rate_pct": 35.5,
+     "worst_pct": -40.05
     }
    },
    "signal_lines": {
     "MA5": {
-     "price": 40.65,
-     "dist_pct": -4.4,
-     "broken": false
-    },
-    "MA50": {
-     "price": 39.31,
+     "price": 41.58,
      "dist_pct": -7.6,
      "broken": false
     },
+    "MA50": {
+     "price": 39.46,
+     "dist_pct": -12.3,
+     "broken": false
+    },
     "MA200": {
-     "price": 43.72,
-     "dist_pct": 2.8,
-     "broken": true
+     "price": 43.68,
+     "dist_pct": -2.9,
+     "broken": false
     }
    },
    "buy_side": {
-    "bucket": "2/3 警戒",
-    "sig_score": 2,
-    "rsi": 65.2,
+    "bucket": "3/3 健全",
+    "sig_score": 3,
+    "rsi": 67.4,
     "rsi_turn": false,
     "ma5_cross": false,
     "macd_up": true,
     "true_count": 1
    },
    "sector_breadth_today": {
-    "down": 6,
+    "down": 2,
     "total": 7,
     "down_tickers": [
      "WULF",
-     "AMD",
-     "MRVL",
-     "CRCL",
-     "NBIS",
-     "TXG"
+     "MRVL"
     ]
    }
   },
   {
    "ticker": "CRCL",
-   "price": 91.72,
+   "price": 93.0,
    "holding": null,
    "sell_side": {
     "mom_bucket": "Lv1 軟調",
     "mom_score": 1,
-    "streak_days": 2,
-    "ret5_pct": 14.0,
-    "drawdown60d_pct": -11.1,
-    "vol_zone": "Normal"
+    "streak_days": 3,
+    "ret5_pct": 9.3,
+    "drawdown60d_pct": -9.9,
+    "vol_zone": "High"
    },
    "hold_outlook_current_bucket": {
     "5d": {
@@ -469,91 +453,87 @@
      "mae_p10_pct": -23.34
     },
     "10d": {
-     "avg_ret_pct": -10.2,
-     "loss_rate_pct": 76.2,
-     "p10_pct": -27.88,
-     "p_down10_pct": 50.0,
-     "p_down20_pct": 35.7,
-     "mae_med_pct": -16.09,
-     "mae_p10_pct": -33.11
+     "avg_ret_pct": -9.89,
+     "loss_rate_pct": 74.4,
+     "p10_pct": -27.87,
+     "p_down10_pct": 48.8,
+     "p_down20_pct": 34.9,
+     "mae_med_pct": -15.84,
+     "mae_p10_pct": -33.09
     },
     "20d": {
-     "avg_ret_pct": -18.28,
-     "loss_rate_pct": 74.4,
-     "p10_pct": -41.59,
-     "p_down10_pct": 69.2,
-     "p_down20_pct": 56.4,
-     "mae_med_pct": -31.02,
-     "mae_p10_pct": -43.73
+     "avg_ret_pct": -17.74,
+     "loss_rate_pct": 72.5,
+     "p10_pct": -41.18,
+     "p_down10_pct": 67.5,
+     "p_down20_pct": 55.0,
+     "mae_med_pct": -30.89,
+     "mae_p10_pct": -42.85
     }
    },
    "buy_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": -6.01,
-     "win_rate_pct": 27.3,
-     "worst_pct": -28.96
+     "avg_ret_pct": 1.24,
+     "win_rate_pct": 53.1,
+     "worst_pct": -29.0
     },
     "10d": {
-     "avg_ret_pct": -16.03,
-     "win_rate_pct": 0.0,
-     "worst_pct": -31.12
+     "avg_ret_pct": 1.22,
+     "win_rate_pct": 46.7,
+     "worst_pct": -25.68
     },
     "20d": {
-     "avg_ret_pct": -29.78,
-     "win_rate_pct": 0.0,
-     "worst_pct": -38.45
+     "avg_ret_pct": 1.65,
+     "win_rate_pct": 64.0,
+     "worst_pct": -37.16
     }
    },
    "signal_lines": {
     "MA5": {
-     "price": 91.53,
-     "dist_pct": -0.2,
-     "broken": false
+     "price": 93.12,
+     "dist_pct": 0.1,
+     "broken": true
     },
     "MA50": {
-     "price": 78.48,
-     "dist_pct": -14.4,
+     "price": 79.03,
+     "dist_pct": -15.0,
      "broken": false
     },
     "MA200": {
-     "price": 86.03,
-     "dist_pct": -6.2,
+     "price": 86.07,
+     "dist_pct": -7.5,
      "broken": false
     }
    },
    "buy_side": {
-    "bucket": "3/3 健全",
-    "sig_score": 3,
-    "rsi": 52.2,
+    "bucket": "2/3 警戒",
+    "sig_score": 2,
+    "rsi": 40.7,
     "rsi_turn": false,
     "ma5_cross": false,
     "macd_up": true,
     "true_count": 1
    },
    "sector_breadth_today": {
-    "down": 6,
+    "down": 2,
     "total": 7,
     "down_tickers": [
      "WULF",
-     "AMD",
-     "MRVL",
-     "CRCL",
-     "NBIS",
-     "TXG"
+     "MRVL"
     ]
    }
   },
   {
    "ticker": "NBIS",
-   "price": 226.61,
+   "price": 243.48,
    "holding": null,
    "sell_side": {
     "mom_bucket": "Lv1 軟調",
-    "mom_score": 2,
-    "streak_days": 4,
-    "ret5_pct": 8.2,
-    "drawdown60d_pct": -18.4,
-    "vol_zone": "Normal"
+    "mom_score": 1,
+    "streak_days": 5,
+    "ret5_pct": 11.7,
+    "drawdown60d_pct": -12.3,
+    "vol_zone": "High"
    },
    "hold_outlook_current_bucket": {
     "5d": {
@@ -566,13 +546,13 @@
      "mae_p10_pct": -18.25
     },
     "10d": {
-     "avg_ret_pct": 7.54,
-     "loss_rate_pct": 38.8,
-     "p10_pct": -17.21,
-     "p_down10_pct": 20.4,
-     "p_down20_pct": 4.9,
-     "mae_med_pct": -10.61,
-     "mae_p10_pct": -25.11
+     "avg_ret_pct": 7.53,
+     "loss_rate_pct": 38.5,
+     "p10_pct": -17.08,
+     "p_down10_pct": 20.2,
+     "p_down20_pct": 4.8,
+     "mae_med_pct": -10.62,
+     "mae_p10_pct": -25.07
     },
     "20d": {
      "avg_ret_pct": 11.66,
@@ -586,170 +566,162 @@
    },
    "buy_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 2.09,
-     "win_rate_pct": 49.5,
-     "worst_pct": -32.06
+     "avg_ret_pct": 1.94,
+     "win_rate_pct": 46.8,
+     "worst_pct": -25.26
     },
     "10d": {
-     "avg_ret_pct": 7.11,
-     "win_rate_pct": 62.3,
-     "worst_pct": -28.63
+     "avg_ret_pct": 2.55,
+     "win_rate_pct": 48.7,
+     "worst_pct": -36.14
     },
     "20d": {
-     "avg_ret_pct": 11.56,
-     "win_rate_pct": 54.8,
-     "worst_pct": -27.97
+     "avg_ret_pct": 11.19,
+     "win_rate_pct": 63.0,
+     "worst_pct": -46.33
     }
    },
    "signal_lines": {
     "MA5": {
-     "price": 227.41,
-     "dist_pct": 0.4,
-     "broken": true
+     "price": 232.51,
+     "dist_pct": -4.5,
+     "broken": false
     },
     "MA50": {
-     "price": 213.38,
-     "dist_pct": -5.8,
+     "price": 214.26,
+     "dist_pct": -12.0,
      "broken": false
     },
     "MA200": {
-     "price": 162.69,
-     "dist_pct": -28.2,
+     "price": 163.42,
+     "dist_pct": -32.9,
      "broken": false
     }
    },
    "buy_side": {
-    "bucket": "2/3 警戒",
-    "sig_score": 2,
-    "rsi": 59.8,
+    "bucket": "3/3 健全",
+    "sig_score": 3,
+    "rsi": 63.2,
     "rsi_turn": false,
-    "ma5_cross": false,
+    "ma5_cross": true,
     "macd_up": false,
-    "true_count": 0
+    "true_count": 1
    },
    "sector_breadth_today": {
-    "down": 6,
+    "down": 2,
     "total": 7,
     "down_tickers": [
      "WULF",
-     "AMD",
-     "MRVL",
-     "CRCL",
-     "NBIS",
-     "TXG"
+     "MRVL"
     ]
    }
   },
   {
    "ticker": "TXG",
-   "price": 75.62,
+   "price": 84.11,
    "holding": null,
    "sell_side": {
-    "mom_bucket": "Lv1 軟調",
-    "mom_score": 1,
-    "streak_days": 1,
-    "ret5_pct": 1.7,
-    "drawdown60d_pct": -4.4,
+    "mom_bucket": "Lv0 平穏",
+    "mom_score": 0,
+    "streak_days": 6,
+    "ret5_pct": 9.3,
+    "drawdown60d_pct": 0.0,
     "vol_zone": "High"
    },
    "hold_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 2.21,
-     "loss_rate_pct": 45.2,
-     "p10_pct": -9.63,
-     "p_down10_pct": 8.9,
-     "p_down20_pct": 0.7,
-     "mae_med_pct": -5.52,
-     "mae_p10_pct": -11.84
+     "avg_ret_pct": 2.44,
+     "loss_rate_pct": 43.4,
+     "p10_pct": -8.9,
+     "p_down10_pct": 5.6,
+     "p_down20_pct": 0.0,
+     "mae_med_pct": -5.72,
+     "mae_p10_pct": -11.73
     },
     "10d": {
-     "avg_ret_pct": 5.86,
-     "loss_rate_pct": 35.6,
-     "p10_pct": -8.96,
-     "p_down10_pct": 9.6,
-     "p_down20_pct": 3.0,
-     "mae_med_pct": -6.08,
-     "mae_p10_pct": -15.28
+     "avg_ret_pct": 3.64,
+     "loss_rate_pct": 41.0,
+     "p10_pct": -14.08,
+     "p_down10_pct": 18.7,
+     "p_down20_pct": 5.0,
+     "mae_med_pct": -7.63,
+     "mae_p10_pct": -17.09
     },
     "20d": {
-     "avg_ret_pct": 8.62,
-     "loss_rate_pct": 39.4,
-     "p10_pct": -22.25,
-     "p_down10_pct": 18.9,
-     "p_down20_pct": 12.9,
-     "mae_med_pct": -9.1,
-     "mae_p10_pct": -28.15
+     "avg_ret_pct": 7.57,
+     "loss_rate_pct": 41.2,
+     "p10_pct": -16.59,
+     "p_down10_pct": 23.5,
+     "p_down20_pct": 6.6,
+     "mae_med_pct": -9.35,
+     "mae_p10_pct": -26.86
     }
    },
    "buy_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 2.99,
-     "win_rate_pct": 57.4,
-     "worst_pct": -20.18
+     "avg_ret_pct": 0.22,
+     "win_rate_pct": 49.2,
+     "worst_pct": -15.34
     },
     "10d": {
-     "avg_ret_pct": 6.51,
-     "win_rate_pct": 67.4,
-     "worst_pct": -22.44
+     "avg_ret_pct": 0.79,
+     "win_rate_pct": 54.8,
+     "worst_pct": -27.87
     },
     "20d": {
-     "avg_ret_pct": 14.69,
-     "win_rate_pct": 81.5,
-     "worst_pct": -19.06
+     "avg_ret_pct": 5.44,
+     "win_rate_pct": 50.8,
+     "worst_pct": -18.71
     }
    },
    "signal_lines": {
     "MA5": {
-     "price": 76.19,
-     "dist_pct": 0.8,
-     "broken": true
+     "price": 79.23,
+     "dist_pct": -5.8,
+     "broken": false
     },
     "MA50": {
-     "price": 58.08,
-     "dist_pct": -23.2,
+     "price": 59.54,
+     "dist_pct": -29.2,
      "broken": false
     },
     "MA200": {
-     "price": 31.92,
-     "dist_pct": -57.8,
+     "price": 32.57,
+     "dist_pct": -61.3,
      "broken": false
     }
    },
    "buy_side": {
-    "bucket": "2/3 警戒",
-    "sig_score": 2,
-    "rsi": 76.3,
+    "bucket": "3/3 過熱",
+    "sig_score": 3,
+    "rsi": 77.4,
     "rsi_turn": false,
-    "ma5_cross": false,
+    "ma5_cross": true,
     "macd_up": false,
-    "true_count": 0
+    "true_count": 1
    },
    "sector_breadth_today": {
-    "down": 6,
+    "down": 2,
     "total": 7,
     "down_tickers": [
      "WULF",
-     "AMD",
-     "MRVL",
-     "CRCL",
-     "NBIS",
-     "TXG"
+     "MRVL"
     ]
    }
   }
  ],
  "regime": {
   "QQQ": {
-   "price": 741.21,
-   "ma200": 662.94,
+   "price": 741.1,
+   "ma200": 663.53,
    "above": true,
-   "dist_pct": 11.8
+   "dist_pct": 11.7
   },
   "BTC": {
-   "price": 84617.87,
-   "ma200": 70852.1,
+   "price": 83873.17,
+   "ma200": 70928.26,
    "above": true,
-   "dist_pct": 19.4
+   "dist_pct": 18.3
   }
  }
 }
