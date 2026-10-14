@@ -1,6 +1,6 @@
 {
- "date": "2026-10-13",
- "usdjpy": 158.27,
+ "date": "2026-10-14",
+ "usdjpy": 158.46,
  "tickers": [
   {
    "ticker": "WULF",
@@ -24,36 +24,36 @@
    },
    "hold_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 5.53,
-     "loss_rate_pct": 42.6,
-     "p10_pct": -8.75,
-     "p_down10_pct": 8.2,
+     "avg_ret_pct": 5.47,
+     "loss_rate_pct": 43.0,
+     "p10_pct": -8.79,
+     "p_down10_pct": 8.3,
      "p_down20_pct": 2.5,
-     "mae_med_pct": -7.19,
-     "mae_p10_pct": -16.27,
-     "avg_pnl_usd": 82,
+     "mae_med_pct": -7.28,
+     "mae_p10_pct": -16.28,
+     "avg_pnl_usd": 81,
      "p10_loss_usd": -130
     },
     "10d": {
-     "avg_ret_pct": 7.48,
-     "loss_rate_pct": 40.3,
+     "avg_ret_pct": 7.37,
+     "loss_rate_pct": 40.7,
      "p10_pct": -15.08,
-     "p_down10_pct": 23.5,
+     "p_down10_pct": 23.7,
      "p_down20_pct": 5.9,
-     "mae_med_pct": -10.27,
+     "mae_med_pct": -10.29,
      "mae_p10_pct": -24.56,
-     "avg_pnl_usd": 111,
+     "avg_pnl_usd": 109,
      "p10_loss_usd": -224
     },
     "20d": {
-     "avg_ret_pct": 8.49,
-     "loss_rate_pct": 42.6,
-     "p10_pct": -21.69,
-     "p_down10_pct": 25.2,
-     "p_down20_pct": 12.2,
-     "mae_med_pct": -14.46,
-     "mae_p10_pct": -29.94,
-     "avg_pnl_usd": 126,
+     "avg_ret_pct": 8.4,
+     "loss_rate_pct": 43.0,
+     "p10_pct": -21.71,
+     "p_down10_pct": 25.4,
+     "p_down20_pct": 12.3,
+     "mae_med_pct": -14.48,
+     "mae_p10_pct": -29.98,
+     "avg_pnl_usd": 125,
      "p10_loss_usd": -322
     }
    },
@@ -136,37 +136,37 @@
    },
    "hold_outlook_current_bucket": {
     "5d": {
-     "avg_ret_pct": 2.13,
-     "loss_rate_pct": 33.6,
-     "p10_pct": -5.61,
+     "avg_ret_pct": 2.05,
+     "loss_rate_pct": 33.8,
+     "p10_pct": -5.62,
      "p_down10_pct": 2.3,
      "p_down20_pct": 0.0,
      "mae_med_pct": -3.91,
      "mae_p10_pct": -9.25,
-     "avg_pnl_usd": 215,
-     "p10_loss_usd": -567
+     "avg_pnl_usd": 207,
+     "p10_loss_usd": -568
     },
     "10d": {
-     "avg_ret_pct": 1.85,
-     "loss_rate_pct": 51.2,
-     "p10_pct": -9.56,
-     "p_down10_pct": 9.3,
+     "avg_ret_pct": 1.74,
+     "loss_rate_pct": 51.6,
+     "p10_pct": -9.58,
+     "p_down10_pct": 9.4,
      "p_down20_pct": 0.0,
-     "mae_med_pct": -5.7,
-     "mae_p10_pct": -13.59,
-     "avg_pnl_usd": 187,
-     "p10_loss_usd": -966
+     "mae_med_pct": -5.71,
+     "mae_p10_pct": -13.63,
+     "avg_pnl_usd": 176,
+     "p10_loss_usd": -968
     },
     "20d": {
-     "avg_ret_pct": 4.19,
-     "loss_rate_pct": 54.3,
-     "p10_pct": -12.17,
-     "p_down10_pct": 17.1,
+     "avg_ret_pct": 4.01,
+     "loss_rate_pct": 54.7,
+     "p10_pct": -12.19,
+     "p_down10_pct": 17.2,
      "p_down20_pct": 0.0,
-     "mae_med_pct": -8.18,
-     "mae_p10_pct": -17.14,
-     "avg_pnl_usd": 423,
-     "p10_loss_usd": -1229
+     "mae_med_pct": -8.2,
+     "mae_p10_pct": -17.23,
+     "avg_pnl_usd": 405,
+     "p10_loss_usd": -1231
     }
    },
    "buy_outlook_current_bucket": {
@@ -753,10 +753,10 @@
    "dist_pct": 11.1
   },
   "BTC": {
-   "price": 82774.1,
-   "ma200": 72050.03,
+   "price": 83299.0,
+   "ma200": 72129.77,
    "above": true,
-   "dist_pct": 14.9
+   "dist_pct": 15.5
   }
  }
 }
