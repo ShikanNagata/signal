@@ -1,6 +1,36 @@
 {
- "date": "2026-10-29",
+ "date": "2026-10-30",
  "tickers": {
+  "WULF": {
+   "mom_bucket": "Lv2 加速",
+   "true_count": 1
+  },
+  "AMD": {
+   "mom_bucket": "Lv1 軟調",
+   "true_count": 1
+  },
+  "MRVL": {
+   "mom_bucket": "Lv2 加速",
+   "true_count": 0
+  },
+  "IONQ": {
+   "mom_bucket": "Lv2 加速",
+   "true_count": 1
+  },
+  "CRCL": {
+   "mom_bucket": "Lv2 加速",
+   "true_count": 0
+  },
+  "NBIS": {
+   "mom_bucket": "Lv2 加速",
+   "true_count": 1
+  },
+  "TXG": {
+   "mom_bucket": "Lv1 軟調",
+   "true_count": 1
+  }
+ },
+ "baseline": {
   "WULF": {
    "mom_bucket": "Lv2 加速",
    "true_count": 1
@@ -24,36 +54,6 @@
   "NBIS": {
    "mom_bucket": "Lv2 加速",
    "true_count": 2
-  },
-  "TXG": {
-   "mom_bucket": "Lv1 軟調",
-   "true_count": 1
-  }
- },
- "baseline": {
-  "WULF": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 1
-  },
-  "AMD": {
-   "mom_bucket": "Lv1 軟調",
-   "true_count": 2
-  },
-  "MRVL": {
-   "mom_bucket": "Lv1 軟調",
-   "true_count": 3
-  },
-  "IONQ": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 3
-  },
-  "CRCL": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 0
-  },
-  "NBIS": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 3
   },
   "TXG": {
    "mom_bucket": "Lv1 軟調",
