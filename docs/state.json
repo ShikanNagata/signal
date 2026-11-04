@@ -1,17 +1,17 @@
 {
- "date": "2026-11-03",
+ "date": "2026-11-04",
  "tickers": {
   "WULF": {
    "mom_bucket": "Lv2 加速",
-   "true_count": 0
+   "true_count": 1
   },
   "AMD": {
    "mom_bucket": "Lv3 急落",
-   "true_count": 0
+   "true_count": 1
   },
   "MRVL": {
    "mom_bucket": "Lv3 急落",
-   "true_count": 0
+   "true_count": 1
   },
   "IONQ": {
    "mom_bucket": "Lv2 加速",
@@ -22,8 +22,8 @@
    "true_count": 0
   },
   "NBIS": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 0
+   "mom_bucket": "Lv3 急落",
+   "true_count": 1
   },
   "TXG": {
    "mom_bucket": "Lv3 急落",
@@ -36,7 +36,7 @@
    "true_count": 0
   },
   "AMD": {
-   "mom_bucket": "Lv2 加速",
+   "mom_bucket": "Lv3 急落",
    "true_count": 0
   },
   "MRVL": {
@@ -56,7 +56,7 @@
    "true_count": 0
   },
   "TXG": {
-   "mom_bucket": "Lv2 加速",
+   "mom_bucket": "Lv3 急落",
    "true_count": 0
   }
  }
