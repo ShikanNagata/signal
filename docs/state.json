@@ -1,5 +1,5 @@
 {
- "date": "2026-11-11",
+ "date": "2026-11-12",
  "tickers": {
   "WULF": {
    "mom_bucket": "Lv2 加速",
@@ -10,20 +10,20 @@
    "true_count": 1
   },
   "MRVL": {
-   "mom_bucket": "Lv3 急落",
-   "true_count": 1
+   "mom_bucket": "Lv2 加速",
+   "true_count": 2
   },
   "IONQ": {
-   "mom_bucket": "Lv1 軟調",
+   "mom_bucket": "Lv2 加速",
    "true_count": 1
   },
   "CRCL": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 0
+   "mom_bucket": "Lv3 急落",
+   "true_count": 1
   },
   "NBIS": {
    "mom_bucket": "Lv2 加速",
-   "true_count": 2
+   "true_count": 1
   },
   "TXG": {
    "mom_bucket": "Lv2 加速",
@@ -37,11 +37,11 @@
   },
   "AMD": {
    "mom_bucket": "Lv1 軟調",
-   "true_count": 2
+   "true_count": 1
   },
   "MRVL": {
-   "mom_bucket": "Lv2 加速",
-   "true_count": 3
+   "mom_bucket": "Lv3 急落",
+   "true_count": 1
   },
   "IONQ": {
    "mom_bucket": "Lv1 軟調",
